@@ -1,0 +1,22 @@
+<div>
+    <div class="header-component">
+        <header-component></header-component>
+    </div>
+    <!--div class="welcome-component">
+        <welcome-component></welcome-component>
+    </div-->
+    <div class="content-component">
+        <summary-component></summary-component>
+    </div>
+    <div class="map-component">
+        <div *ngIf="_loading">
+          <!-- Loading component -->
+          <loading loadingText="Loading Leaflet Map"></loading>
+        </div>
+        <!-- The actual leaflet map -->
+        <leaflet-map (layerAdded)="__onLayerAdded($event)"></leaflet-map>
+    </div>
+    <div class="footer-component">
+        <footer-component></footer-component>
+    </div>
+</div>

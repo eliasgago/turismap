@@ -1,0 +1,30 @@
+<div class="footer">
+  <div class="check-component">
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="viewpointsCheck" (ngModelChange)="__onUpdateCheck()">
+      <span class="slider viewpoint round"></span>
+    </label>
+    <span class="label">Miradores</span>
+  </div>
+  <div class="check-component">
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="sitesCheck" (ngModelChange)="__onUpdateCheck()">
+      <span class="slider site round"></span>
+    </label>
+    <span class="label">Ptos. Interés</span>
+  </div>
+  <div class="check-component">
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="lodgingsCheck" (ngModelChange)="__onUpdateCheck()">
+      <span class="slider lodging round"></span>
+    </label>
+    <span class="label">Alojamientos</span>
+  </div>
+  <div class="check-component">
+    <label class="switch">
+      <input type="checkbox" [(ngModel)]="wineriesCheck" (ngModelChange)="__onUpdateCheck()">
+      <span class="slider winery round"></span>
+    </label>
+    <span class="label">Bodegas</span>
+  </div>
+</div>

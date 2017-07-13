@@ -1,0 +1,161 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+
+body {
+	font-family: 'Open Sans';
+	margin: 0px;
+  	background-color: #333;
+  	color: white;
+}
+
+h1 {
+	color: white;
+}
+
+.mainContent
+{
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+a.main
+{
+  text-decoration: none;
+}
+
+a.main:hover
+{
+  text-decoration: underline;
+}
+
+p.padded
+{
+  padding: 50px;
+}
+
+/* Override */
+.leaflet-div-icon {
+	background-color: transparent;
+	border: 0px;
+}
+
+.viewpoint {
+  background-color: #51A3A3;
+}
+
+.viewpoint.selected {
+  background-color: rgba(81, 163, 163, 0.4);
+  border: 2px solid #51A3A3;
+}
+
+.site {
+  background-color: #CB904D;
+}
+
+.site.selected {
+  background-color: rgba(203, 144, 77, 0.4);
+  border: 2px solid #CB904D;
+}
+
+.lodging {
+  background-color: #DFCC74;
+}
+
+.lodging.selected {
+  background-color: rgba(223, 204, 116, 0.4);
+  border: 2px solid #DFCC74;
+}
+
+.winery {
+  background-color: #75485E;
+}
+
+.winery.selected {
+  background-color: rgba(81, 163, 163, 0.4);
+  border: 2px solid #75485E;
+}
+
+.icon_point {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	border: 2px solid white;
+}
+
+.ringbase {
+  position:relative;
+  top:-22px;
+  left:-22px;
+  width:60px;
+  height:60px;
+  border-radius:35px;
+  opacity:0.0;
+  z-index:1000;
+}
+
+.ring1 {
+  box-shadow:0 0 10px 1px #fff, inset 0 0 10px 1px #fff;
+  -moz-animation: ring 2s ease-in-out;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation: ring 2s ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  animation: ring 2s ease-in-out;
+  animation-iteration-count: infinite;
+  z-index:1000;
+}
+
+
+.viewpoint .ring1 {
+  box-shadow:0 0 10px 1px #51A3A3, inset 0 0 10px 1px #51A3A3;
+}
+
+.site .ring1 {
+  box-shadow:0 0 10px 1px #CB904D, inset 0 0 10px 1px #CB904D;
+}
+
+.lodging .ring1 {
+  box-shadow:0 0 10px 1px #DFCC74, inset 0 0 10px 1px #DFCC74;
+}
+
+.winery .ring1 {
+  box-shadow:0 0 10px 1px #75485E, inset 0 0 10px 1px #75485E;
+}
+
+@-webkit-keyframes ring {
+  0% {-webkit-transform: scale(0.4, 0.4); opacity: 0.0;}
+  50% {opacity: 1;}
+  100% {-webkit-transform: scale(1.4, 1.4); opacity: 0.0;}
+}
+
+@-moz-keyframes ring {
+  0% {-moz-transform: scale(0.4, 0.4); opacity: 0.0;}
+  50% {opacity: 1;}
+  100% {-moz-transform: scale(1.4, 1.4); opacity: 0.0;}
+}
+
+@keyframes ring {
+  0% {transform: scale(0.4, 0.4); opacity: 0.0;}
+  50% {opacity: 1;}
+  100% {transform: scale(1.4, 1.4); opacity: 0.0;}
+}
+
+
+/* Input Search */
+input[type=search] {
+  display:block;
+  margin: 0 0 0 auto;
+  width: 130px;
+  box-sizing: border-box;
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 12pt;
+  background-color: white;
+  background-image: url('https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png');
+  background-position: 5px 5px;
+  background-repeat: no-repeat;
+  padding: 4px 25px;
+}
+
+.icon svg {
+	stroke: #fff;
+}

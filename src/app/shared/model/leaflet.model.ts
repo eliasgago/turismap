@@ -95,7 +95,7 @@
      this._store['mapParams'] = {
        zoomControl: true
        , center: L.latLng(42.438862, -7.551178)
-       , zoom: 11 
+       , zoom: 11
        , minZoom: 4
        , maxZoom: 18
      };

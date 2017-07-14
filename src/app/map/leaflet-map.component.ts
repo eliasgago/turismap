@@ -117,10 +117,20 @@ export class LeafletMap extends FluxComponent {
           let marker = this._markers[i];
           if(marker.options.markerId == selectedPoint.id ){
             this.bindSelectedIcon(marker);
+            marker.setOpacity(1);  
           }else{
             this.bindIcon(marker);
+            marker.setOpacity(0.5);
           }
         }
+        this._map.panTo(
+          [selectedPoint.latitude, selectedPoint.longitude],
+          {
+            animate: true,
+            duration: 1,
+            easeLinearity: 0.6
+          }
+        );
         break;
       case BasicActions.CHANGE_VISIBLE_TYPES:
         let visibleTypes = data['visibleTypes'];
@@ -154,11 +164,12 @@ export class LeafletMap extends FluxComponent {
     this._map.on('layerremove', () => {this.__onLayerRemoved()} );
 
     // tile layer
-    L.tileLayer(tileData['url'], {
+    var backgroundMap = L.tileLayer(tileData['url'], {
       attribution: tileData['attribution'],
       accessToken: tileData['accessToken']
     }).addTo(this._map); 
 
+    backgroundMap.setOpacity(1);
   }
 
   private addMarker(mapLocation: MapLocation) {
@@ -175,6 +186,7 @@ export class LeafletMap extends FluxComponent {
       this._d.dispatchAction(BasicActions.SHOW_POINT, { id: markerId });
     });
     this.bindIcon(marker);
+    marker.setOpacity(0.5);
     return marker;
   }
 
@@ -198,21 +210,23 @@ export class LeafletMap extends FluxComponent {
       html: '<div class="icon_point ' + this.getType(marker.options.type) + '"></div>'
     });
 
-    var iconSelected = L.divIcon({
-      html: '<div class="icon_point ' + this.getType(marker.options.type) + ' selected"><div class="ringbase ring1"></div></div>'
-    });
-
     marker.setIcon(icon);
 
     //$(marker._icon).addClass(marker.options.type);
   }
 
   private bindSelectedIcon(marker): void {
-    var iconSelected = L.divIcon({
+    /*var iconSelected = L.divIcon({
       html: '<div class="icon_point ' + this.getType(marker.options.type) + ' selected"><div class="ringbase ring1"></div></div>'
+    });*/
+
+    var iconSelected = L.icon({
+        iconUrl: 'assets/img/marker.png',
+        iconSize: [40, 40],
+        iconAnchor: [20, 40]
     });
 
-    marker.setIcon(iconSelected);   
+    marker.setIcon(iconSelected); 
 
     // marker.setIcon(icon);
 

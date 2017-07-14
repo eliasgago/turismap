@@ -35,6 +35,7 @@ import { HttpModule    } from '@angular/http';
 import { AppComponent     } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ActionsComponent } from './actions/actions.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SummaryComponent } from './summary/summary.component';
 import { DetailComponent } from './detail/detail.component';
@@ -51,7 +52,7 @@ import { SharedDispatcherModule } from './sharedDispatcher.module';
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, WelcomeComponent, SummaryComponent, DetailComponent, LeafletMap, FooterComponent, LoadingComponent
+    AppComponent, HeaderComponent, WelcomeComponent, SummaryComponent, DetailComponent, LeafletMap, ActionsComponent, FooterComponent, LoadingComponent
   ],
 
   imports: [

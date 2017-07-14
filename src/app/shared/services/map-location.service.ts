@@ -51,7 +51,7 @@ export class MapLocationService
     {
         "id": "chancis",
         "type": MapLocationType.VIEWPOINT,
-        "name" : "Miradoiro da Os Chancís",
+        "name" : "Os Chancís",
         "lat": 42.411231108946076,
         "lon": -7.634741663932801
     },
@@ -302,8 +302,8 @@ export class MapLocationService
   public getRandomLocation(visibleTypes: Array<MapLocationType>): Observable<MapLocation> {
     var mapLocation: MapLocation = null;
 
-    var newSelectedIndex = Math.floor((Math.random() * this.points.length));
-    // var newSelectedIndex = 4;
+    // var newSelectedIndex = Math.floor((Math.random() * this.points.length));
+    var newSelectedIndex = 6;
 
     let found = false;
     while(!found){

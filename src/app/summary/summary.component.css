@@ -8,6 +8,7 @@
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+  box-shadow: 0 0 200px rgba(0,0,0,0.9) inset;
 }
 
 .summary a:hover, .summary a:visited {
@@ -22,7 +23,7 @@
 .description {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
 	flex-grow: 1;
 	padding: 0px 5px;
@@ -43,8 +44,9 @@
 
 .name2 {
     color: white;
-    font-size: 15pt;
+    font-size: 22pt;
     text-shadow: 2px 2px 4px rgba(33, 33, 33, 0.8);
+    font-weight: lighter;
 }
 
 .actions {

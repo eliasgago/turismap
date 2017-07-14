@@ -1,7 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+@import url(https://fonts.googleapis.com/css?family=Roboto:100);
 
 body {
-	font-family: 'Open Sans';
+	font-family: 'Roboto';
 	margin: 0px;
   	background-color: #333;
   	color: white;
@@ -45,13 +45,19 @@ p.padded
 
 /**/
 
+.icon_point.selected {
+  width: 25px;
+  height: 25px;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
 .viewpoint {
   background-color: #51A3A3;
 }
 
 .viewpoint.selected {
-  background-color: rgba(81, 163, 163, 0.4);
-  border: 2px solid #51A3A3;
+  border: 2px solid white;
 }
 
 .site {
@@ -59,8 +65,7 @@ p.padded
 }
 
 .site.selected {
-  background-color: rgba(203, 144, 77, 0.4);
-  border: 2px solid #CB904D;
+  border: 2px solid white;
 }
 
 .lodging {
@@ -68,8 +73,7 @@ p.padded
 }
 
 .lodging.selected {
-  background-color: rgba(223, 204, 116, 0.4);
-  border: 2px solid #DFCC74;
+  border: 2px solid white;
 }
 
 .winery {
@@ -77,24 +81,23 @@ p.padded
 }
 
 .winery.selected {
-  background-color: rgba(81, 163, 163, 0.4);
-  border: 2px solid #75485E;
+  border: 2px solid white;
 }
 
 .icon_point {
-	width: 15px;
-	height: 15px;
+	width: 8px;
+	height: 8px;
 	border-radius: 50%;
 	border: 2px solid white;
 }
 
 .ringbase {
   position:relative;
-  top:-22px;
-  left:-22px;
+  top:-20px;
+  left:-20px;
   width:60px;
   height:60px;
-  border-radius:35px;
+  border-radius: 50%;
   opacity:0.0;
   z-index:1000;
 }
@@ -112,19 +115,19 @@ p.padded
 
 
 .viewpoint .ring1 {
-  box-shadow:0 0 10px 1px #51A3A3, inset 0 0 10px 1px #51A3A3;
+  border: 2px solid #51A3A3;
 }
 
 .site .ring1 {
-  box-shadow:0 0 10px 1px #CB904D, inset 0 0 10px 1px #CB904D;
+  border: 2px solid  #CB904D;
 }
 
 .lodging .ring1 {
-  box-shadow:0 0 10px 1px #DFCC74, inset 0 0 10px 1px #DFCC74;
+  border: 2px solid  #DFCC74;
 }
 
 .winery .ring1 {
-  box-shadow:0 0 10px 1px #75485E, inset 0 0 10px 1px #75485E;
+  border: 2px solid  #75485E;
 }
 
 @-webkit-keyframes ring {

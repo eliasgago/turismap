@@ -5,18 +5,19 @@
     <!--div class="welcome-component">
         <welcome-component></welcome-component>
     </div-->
+    <div class="map-component" [hidden]="(currentView != 'map')">
+        <div *ngIf="_loading">
+          <loading loadingText="Loading Leaflet Map"></loading>
+        </div>
+        <leaflet-map (layerAdded)="__onLayerAdded($event)"></leaflet-map>
+    </div>
     <div class="content-component">
         <summary-component></summary-component>
     </div>
-    <div class="map-component">
-        <div *ngIf="_loading">
-          <!-- Loading component -->
-          <loading loadingText="Loading Leaflet Map"></loading>
-        </div>
-        <!-- The actual leaflet map -->
-        <leaflet-map (layerAdded)="__onLayerAdded($event)"></leaflet-map>
+    <div class="detail-component" [hidden]="(currentView != 'detail')">
+        <detail-component></detail-component>
     </div>
-    <div class="footer-component">
+    <!--div class="footer-component">
         <footer-component></footer-component>
-    </div>
+    </div-->
 </div>

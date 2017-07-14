@@ -14,6 +14,7 @@ export class MapLocation
   protected _type: MapLocationType; 
   protected _name: string; 
   protected _description: string; 
+  protected _tips: Array<string>;
   
 
   constructor()
@@ -46,6 +47,11 @@ export class MapLocation
     return this._description;
   }
 
+  public get tips(): Array<string>
+  {
+    return this._tips;
+  }
+
   public set latitude(value: number)
   {
     if (!isNaN(value) && isFinite(value) && value >= -90 && value <= 90)
@@ -73,6 +79,11 @@ export class MapLocation
     this._description = value;
   }
 
+  public set tips(value: Array<string>)
+  {
+    this._tips = value;
+  }
+
   public clear(): void
   {
     this.id       = "";
@@ -84,6 +95,7 @@ export class MapLocation
     this._type = MapLocationType.NONE;
     this._name = "";
     this._description = "";
+    this._tips = [];
   }
 
 
@@ -99,6 +111,7 @@ export class MapLocation
     mapLocation.type   = this._type;
     mapLocation.name   = this._name;
     mapLocation.description   = this._description;
+    mapLocation.tips   = this._tips;
 
     return mapLocation;
   }

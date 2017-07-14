@@ -37,6 +37,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SummaryComponent } from './summary/summary.component';
+import { DetailComponent } from './detail/detail.component';
 import { LeafletMap       } from './map/leaflet-map.component';
 import { LoadingComponent } from './loading/loading.component';
 // old import { MapNavComponent  } from './navigator/navigator.component';
@@ -50,7 +51,7 @@ import { SharedDispatcherModule } from './sharedDispatcher.module';
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, WelcomeComponent, SummaryComponent, LeafletMap, FooterComponent, LoadingComponent
+    AppComponent, HeaderComponent, WelcomeComponent, SummaryComponent, DetailComponent, LeafletMap, FooterComponent, LoadingComponent
   ],
 
   imports: [

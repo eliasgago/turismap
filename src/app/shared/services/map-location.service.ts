@@ -45,7 +45,6 @@ export class MapLocationService
         "id": "barca",
         "type": MapLocationType.VIEWPOINT,
         "name" : "A Barca",
-        "tooltipPosition": "center",
         "lat": 42.4244108470418,
         "lon": -7.661574482917785
     },
@@ -53,7 +52,6 @@ export class MapLocationService
         "id": "chancis",
         "type": MapLocationType.VIEWPOINT,
         "name" : "Miradoiro da Os Chancís",
-        "tooltipPosition": "top",
         "lat": 42.411231108946076,
         "lon": -7.634741663932801
     },
@@ -61,7 +59,6 @@ export class MapLocationService
         "id": "cividade",
         "type": MapLocationType.VIEWPOINT,
         "name" : "Miradoiro da Cividade",
-        "tooltipPosition": "center",
         "lat": 42.39334215481423,
         "lon": -7.615011334419251
     },
@@ -69,7 +66,6 @@ export class MapLocationService
         "id": "boqueirino",
         "type": MapLocationType.VIEWPOINT,
         "name" : "Miradoiro do Boqueiriño",
-        "tooltipPosition": "center",
         "lat": 42.40393908425197,
         "lon": -7.596171498298644
     },
@@ -77,16 +73,19 @@ export class MapLocationService
         "id": "santiorxo",
         "type": MapLocationType.VIEWPOINT,
         "name" : "Miradoiro de Santiorxo",
-        "selected": true,
-        "tooltipPosition": "center",
         "lat": 42.40786840656946,
-        "lon": -7.568507194519042
+        "lon": -7.568507194519042,
+        "description": "En la parroquia de Santiorxo se encuentra el mirador que lleva su mismo nombre. Rodeado por un pinar nos deja entrever uno de los infinitos meandros que el Sil realiza hasta juntarse con el Miño. Acondicionado con un pequeño paseo de madera que nos lleva hasta él, durante ese trayecto tenemos varios bancos desde donde podemos comtemplar el río y los cañones que en este punto miden hasta 500m.",
+        "tips": [
+            "Es el mirador desde el cual podemos ver más longitud del río.",
+            "El coche nos lleva hasta un pundo desde donde ya contemplamos los cañones.",
+            "Merendar en uno de esos bancos es uno de los placeres de la Ribeira Sacra."
+        ]
     },
     {
         "id": "cadeiras",
         "type": MapLocationType.VIEWPOINT,
         "name" : "Miradoiro de Cadeiras",
-        "tooltipPosition": "center",
         "lat": 42.3976841411843,
         "lon": -7.555275857448577
     },
@@ -94,7 +93,6 @@ export class MapLocationService
         "id": "chelos",
         "type": MapLocationType.VIEWPOINT,
         "name" : "Miradoiro de Os Chelos",
-        "tooltipPosition": "center",
         "lat": 42.38953276520176,
         "lon": -7.517826855182647
     },
@@ -102,7 +100,6 @@ export class MapLocationService
         "id": "souto_chao",
         "type": MapLocationType.VIEWPOINT,
         "name" : "Miradoiro de Souto Chao",
-        "tooltipPosition": "bottom",
         "lat": 42.407500043057176,
         "lon": -7.471837699413299
     },
@@ -110,7 +107,6 @@ export class MapLocationService
         "id": "pena",
         "type": MapLocationType.VIEWPOINT,
         "name" : "Miradoiro da Pena do Castelo",
-        "tooltipPosition": "top",
         "lat": 42.412528216274005,
         "lon": -7.467776834964752
     },
@@ -118,7 +114,6 @@ export class MapLocationService
         "id": "siltrip",
         "type": MapLocationType.VIEWPOINT,
         "name" : "SilTrip",
-        "tooltipPosition": "bottom",
         "lat": 42.409381446908135,
         "lon": -7.632086277008057
     },
@@ -126,7 +121,6 @@ export class MapLocationService
         "id": "catamaran",
         "type": MapLocationType.VIEWPOINT,
         "name" : "Catamarán",
-        "tooltipPosition": "center",
         "lat": 42.4095794861362,
         "lon": -7.444020509719849
     },
@@ -134,7 +128,6 @@ export class MapLocationService
         "id": "turismo",
         "type": MapLocationType.SITE,
         "name" : "Oficina de Turismo",
-        "tooltipPosition": "center",
         "icon": "./img/info_icon.png",
         "lat": 42.46204971576779,
         "lon": -7.587255835533141
@@ -143,7 +136,6 @@ export class MapLocationService
         "id": "xabrega",
         "type": MapLocationType.SITE,
         "name" : "Os Muiños do Xabrega",
-        "tooltipPosition": "center",
         "icon": "./img/xabrega_icon.png",
         "lat": 42.41889454494551,
         "lon": -7.630434036254883
@@ -152,7 +144,6 @@ export class MapLocationService
         "id": "canabal",
         "type": MapLocationType.SITE,
         "name" : "Igrexa de San Pedro de Canabal",
-        "tooltipPosition": "center",
         "icon": "./img/iglesia_icon.png",
         "lat": 42.48237788307621,
         "lon": -7.585777938365935
@@ -161,7 +152,6 @@ export class MapLocationService
         "id": "proendos",
         "type": MapLocationType.SITE,
         "name" : "Petroglifos de Proendos",
-        "tooltipPosition": "center",
         "icon": "./img/proendos_icon.png",
         "lat": 42.45169217735101,
         "lon": -7.583417594432831
@@ -170,7 +160,6 @@ export class MapLocationService
         "id": "bolmente",
         "type": MapLocationType.SITE,
         "name" : "Igrexa de Santa María de Bolmente",
-        "tooltipPosition": "center",
         "icon": "./img/iglesia_icon.png",
         "lat": 42.4224269349809,
         "lon": -7.589288949966431
@@ -179,7 +168,6 @@ export class MapLocationService
         "id": "pinol",
         "type": MapLocationType.SITE,
         "name" : "Igrexa de San Vicente de Pinol",
-        "tooltipPosition": "bottom",
         "icon": "./img/iglesia_icon.png",
         "lat": 42.405899815164204,
         "lon": -7.549495697021484
@@ -188,7 +176,6 @@ export class MapLocationService
         "id": "gundivos",
         "type": MapLocationType.SITE,
         "name" : "Centro Oleiro Rectoral de Gundivós",
-        "tooltipPosition": "center",
         "icon": "./img/gundivos_icon.png",
         "lat": 42.446261403946686,
         "lon": -7.5407034158706665
@@ -197,7 +184,6 @@ export class MapLocationService
         "id": "lobios",
         "type": MapLocationType.SITE,
         "name" : "Igrexa de San Xillao de Lobios",
-        "tooltipPosition": "top",
         "icon": "./img/iglesia_icon.png",
         "lat": 42.40813774626316,
         "lon": -7.530913352966309
@@ -206,7 +192,6 @@ export class MapLocationService
         "id": "donatus",
         "type": MapLocationType.LODGING,
         "name" : "Vila Donatus",
-        "tooltipPosition": "bottom",
         "lat": 42.41389658591989,
         "lon": -7.478824853897094
     },
@@ -214,7 +199,6 @@ export class MapLocationService
         "id": "corona",
         "type": MapLocationType.LODGING,
         "name" : "Casa Corona",
-        "tooltipPosition": "top",
         "lat": 42.45853538959867,
         "lon": -7.597963213920593
     },
@@ -222,7 +206,6 @@ export class MapLocationService
         "id": "flores",
         "type": MapLocationType.LODGING,
         "name" : "Casa das Flores",
-        "tooltipPosition": "center",
         "lat": 42.44503822748129,
         "lon": -7.573903799057006
     },
@@ -230,7 +213,6 @@ export class MapLocationService
         "id": "estevo",
         "type": MapLocationType.LODGING,
         "name" : "Casa do Estevo",
-        "tooltipPosition": "center",
         "lat": 42.42134783469654,
         "lon": -7.472907900810241
     },
@@ -238,7 +220,6 @@ export class MapLocationService
         "id": "rio_sil",
         "type": MapLocationType.LODGING,
         "name" : "Apartamentos Río Sil",
-        "tooltipPosition": "bottom",
         "lat": 42.4166946207761,
         "lon": -7.597289979457854
     },
@@ -246,7 +227,6 @@ export class MapLocationService
         "id": "madrina",
         "type": MapLocationType.LODGING,
         "name" : "Casa da Madriña",
-        "tooltipPosition": "center",
         "lat": 42.48857888524799,
         "lon": -7.574032545089722
     },
@@ -254,7 +234,6 @@ export class MapLocationService
         "id": "anllo",
         "type": MapLocationType.LODGING,
         "name" : "Rectoral de Anllo",
-        "tooltipPosition": "center",
         "lat": 42.43931391926548,
         "lon": -7.626260519027709
     },
@@ -262,7 +241,6 @@ export class MapLocationService
         "id": "rosende",
         "type": MapLocationType.LODGING,
         "name" : "Casa Grande de Rosende",
-        "tooltipPosition": "center",
         "lat": 42.45652089523697,
         "lon": -7.620472311973571
     },
@@ -270,7 +248,6 @@ export class MapLocationService
         "id": "ruperto",
         "type": MapLocationType.LODGING,
         "name" : "Casa Ruperto",
-        "tooltipPosition": "top",
         "lat": 42.414728286601516,
         "lon": -7.479715347290039
     },
@@ -278,7 +255,6 @@ export class MapLocationService
         "id": "solveira",
         "type": MapLocationType.LODGING,
         "name" : "Casa Solveira",
-        "tooltipPosition": "top",
         "lat": 42.417710436936574,
         "lon": -7.600843906402588
     }
@@ -307,7 +283,7 @@ export class MapLocationService
   }
 
   public getLocationById(id): Observable<MapLocation> {
-    var mapLocation: MapLocation = new MapLocation();
+    var mapLocation: MapLocation = null;
     var locationFound;
 
     for (var i = this.points.length - 1; i >= 0; i--) {
@@ -318,33 +294,41 @@ export class MapLocationService
     }
 
     if(locationFound){
-      mapLocation.id = locationFound.id;
-      mapLocation.type = locationFound.type;
-      mapLocation.name = locationFound.name;
-      mapLocation.latitude = locationFound.lat;
-      mapLocation.longitude = locationFound.lon;
+      mapLocation = this.createMapLocation(locationFound);
     }
     return Rx.Observable.of(mapLocation);
   }
 
   public getRandomLocation(visibleTypes: Array<MapLocationType>): Observable<MapLocation> {
-    var mapLocation: MapLocation = new MapLocation();
+    var mapLocation: MapLocation = null;
 
     var newSelectedIndex = Math.floor((Math.random() * this.points.length));
+    // var newSelectedIndex = 4;
+
     let found = false;
     while(!found){
-      if(visibleTypes.indexOf(this.points[newSelectedIndex].type) > -1){
-        mapLocation.id = this.points[newSelectedIndex].id;
-        mapLocation.type = this.points[newSelectedIndex].type;
-        mapLocation.name = this.points[newSelectedIndex].name;
-        mapLocation.latitude = this.points[newSelectedIndex].lat;
-        mapLocation.longitude = this.points[newSelectedIndex].lon;
-        found = true;
-      }else{
-        newSelectedIndex = Math.floor((Math.random() * this.points.length));
-      }
+        if(visibleTypes.indexOf(this.points[newSelectedIndex].type) > -1){
+            mapLocation = this.createMapLocation(this.points[newSelectedIndex]);
+            found = true;
+        }else{
+            newSelectedIndex = Math.floor((Math.random() * this.points.length));
+        }
     }
     return Rx.Observable.of(mapLocation);
+  }
+
+  private createMapLocation(point): MapLocation {
+      var mapLocation: MapLocation = new MapLocation();
+
+      mapLocation.id = point.id;
+      mapLocation.type = point.type;
+      mapLocation.name = point.name;
+      mapLocation.latitude = point.lat;
+      mapLocation.longitude = point.lon;
+      mapLocation.description = point.description;
+      mapLocation.tips = point.tips;
+
+      return mapLocation;
   }
 
 }

@@ -244,6 +244,13 @@
           }
          break;
 
+       case BasicActions.SET_VIEW:
+         this._store['action'] = this._action;
+
+         this._store['currentView'] = payload;
+         validAction = true; 
+         break;
+
 
        case BasicActions.CURRENT_LOCATION:
          // note that you could cache the current location (once fetched) and maintain that in the global store as well if you expect this path to be executed
@@ -295,6 +302,8 @@
      store['location'] = location.clone();  
 
      store['visibleTypes'] = this._store['visibleTypes'];  
+
+     store['currentView'] = this._store['currentView'];  
 
      if(store['selectedPoint'])
        store['selectedPoint'] = selectedPoint.clone();                           

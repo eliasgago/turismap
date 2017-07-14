@@ -63,6 +63,8 @@ import { Subscription } from 'rxjs/Subscription';
  {
    protected _loading: boolean = true;    // true if content is being loaded
 
+   protected currentView: string = 'map';
+
    // access the leaflet map
    @ViewChild(LeafletMap) _leafletMap: LeafletMap;
 
@@ -110,6 +112,11 @@ import { Subscription } from 'rxjs/Subscription';
        case BasicActions.ADDRESS:
          let location: TSMT$Location = <TSMT$Location> data['location'];
          this._leafletMap.toLocation(location.latitude, location.longitude);
+       break;
+       case BasicActions.SET_VIEW:
+         console.log(data['currentView']);
+         this.currentView = data['currentView'];
+         this._chgDetector.detectChanges();
        break;
      }
    }

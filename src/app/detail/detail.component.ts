@@ -7,55 +7,36 @@ import { BasicActions } from '../shared/actions/basic-actions';
 import { MapLocation } from '../shared/model/map-location.model';
 import { MapLocationType } from '../shared/model/map-location-type.model';
 
-
 @Component({
-    selector: 'summary-component',
-    templateUrl: 'summary.component.html',
-    styleUrls: ['summary.component.css']
+    selector: 'detail-component',
+    templateUrl: 'detail.component.html',
+    styleUrls: ['detail.component.css']
 })
 
 
-export class SummaryComponent extends FluxComponent {
-
+export class DetailComponent extends FluxComponent {
+	
 	selectedPoint: MapLocation = null;
-	selectedPointBackgroundImage = null;
-	selectedPointClass = null;
-
-  showDetail = false;
+	selectedPointClass: string;
 
 	_loading = false;
     
     constructor(private _d: FluxDispatcher, private _chgDetector: ChangeDetectorRef) {
     	super(_d);
-   	}
+    }
 
-    // update the component based on a new state of the global store
    	protected __onModelUpdate(data: Object): void {
      	switch (data['action'])
      	{
        		case BasicActions.GET_RANDOM_POINT:
        		case BasicActions.SHOW_POINT:
 	        	this.selectedPoint = <MapLocation> data['selectedPoint'];
-	        	this.selectedPointBackgroundImage = 'assets/img/' + this.getFolderByType(this.selectedPoint.type) + '/' + this.selectedPoint.id + '.jpg';
 	        	this.selectedPointClass = this.getFolderByType(this.selectedPoint.type);
-	         	this._loading = true;
-	   			  this._chgDetector.detectChanges();
+	   			this._loading = true;
+	   			this._chgDetector.detectChanges();
        			break;
      	}
    	}
-
-
-   	protected __onNextPoint(): void {
-        this._dispatcher.dispatchAction(BasicActions.GET_RANDOM_POINT, null);
-    }
-
-    protected __onShowMap(): void {
-        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, 'map');
-    }
-
-    protected __onShowDetail(): void {
-        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, 'detail');
-    }
 
     private getFolderByType(type: MapLocationType) {
     	switch (type) {
@@ -71,4 +52,3 @@ export class SummaryComponent extends FluxComponent {
     }
 
 }
-

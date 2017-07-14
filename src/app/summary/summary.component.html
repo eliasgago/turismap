@@ -3,16 +3,36 @@
         <a href="#"><i class="fa fa-chevron-left"></i></a>
     </div>
     <div class="description">
+        <!--a href="#" (click)="__onShowDetail()"><h1 class="name2">{{selectedPoint.name}}</h1></a-->
         <h1 class="name2">{{selectedPoint.name}}</h1>
         <!--div class="summary_point" [ngClass]="selectedPointClass"><div-->
         <div class="actions">
-            <!--a class="route" href="#"><i class="fa fa-plus-square-o"></i></a>
-            <a class="route" href="#"><i class="fa fa-map-o"></i></a-->
+            <!--a class="detail" href="#" (click)="__onShowDetail()"><span>Más información</span></a-->
+            <!--a class="route" href="#"><i class="fa fa-map-o"></i></a>
             <a class="route" href="#">[Detalle]</a>
-            <a class="route" href="#">[Ruta]</a>
+            <a class="route" href="#">[Ruta]</a-->
         </div>
+        <!--div class="view-switch">
+            <span class="label"><i class="fa fa-map-o"></i></span>&nbsp;
+            <label class="switch">
+              <input type="checkbox" [(ngModel)]="showDetail" (ngModelChange)="__onChangeSwitch()">
+              <span class="slider site round"></span>
+            </label>&nbsp;
+            <span class="label"><i class="fa fa-list-alt"></i></span>
+        </div-->
+
     </div>
     <div class ="chevron">
         <a href="#" (click)="__onNextPoint()"><i class="fa fa-chevron-right"></i></a>
     </div>
 </div>
+
+<!--div style="width: 100%; margin-top: -48px;">
+    <div class="switch">
+      <input type="radio" class="switch-input" name="view" id="map" checked="" (click)="__onShowMap()">
+      <label for="map" class="switch-label switch-label-off">Mapa</label>
+      <input type="radio" class="switch-input" name="view" id="detail" (click)="__onShowDetail()">
+      <label for="detail" class="switch-label switch-label-on">Detalle</label>
+      <span class="switch-selection"></span>
+    </div>
+</div-->

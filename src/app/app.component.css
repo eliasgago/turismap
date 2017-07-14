@@ -1,18 +1,24 @@
 
 .content-component {
   width: 100%;
-  height: 220px;
+  height: 260px;
 }
 
 .welcome-component {
   position: absolute;
   width: 100%;
-  height: 220px;
+  height: 260px;
 }
 
 .map-component {
-  height: 410px;    
+  height: 350px;    
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.detail-component {
+  height: 350px;    
   border: 2px solid #51A3A3;
+  overflow: scroll;
 }
 
 .top-margin

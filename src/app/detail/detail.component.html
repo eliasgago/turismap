@@ -1,0 +1,31 @@
+<div class="detail" *ngIf="_loading">
+
+    <p>{{selectedPoint.description}}</p>
+
+    <!--ul class="options">
+        <li><span class="icon-map-o"></span> <a href="javascript:showRoute('viewpoints_santiorxo')">Mostrar ruta</a></li>
+    </ul-->
+
+    <!--div class="jcarousel-wrapper">
+        <div class="jcarousel">
+            <ul>
+                <li><a href="./img/viewpoints/santiorxo1.jpg" data-lity><img src="./img/viewpoints/santiorxo1.jpg" alt="Image 1"></a></li>
+                <li><a href="./img/viewpoints/santiorxo2.jpg" data-lity><img src="./img/viewpoints/santiorxo2.jpg" alt="Image 2"></a></li>
+                <li><a href="./img/viewpoints/santiorxo3.jpg" data-lity><img src="./img/viewpoints/santiorxo3.jpg" alt="Image 3"></a></li>
+                <li><a href="./img/viewpoints/santiorxo4.jpg" data-lity><img src="./img/viewpoints/santiorxo4.jpg" alt="Image 1"></a></li>
+                <li><a href="./img/viewpoints/santiorxo5.jpg" data-lity><img src="./img/viewpoints/santiorxo5.jpg" alt="Image 2"></a></li>
+            </ul>
+        </div>
+
+        <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+        <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+        <p class="jcarousel-pagination"></p>
+    </div-->
+    <div class="tips" *ngIf="selectedPoint.tips">
+        <h4>Tips:</h4>
+        <ul>
+            <li *ngFor="let tip of selectedPoint.tips">{{tip}}</li>
+        </ul>
+    </div>
+</div>

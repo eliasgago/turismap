@@ -1,10 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:100);
+@import url(https://fonts.googleapis.com/css?family=Dosis:300);
 
 body {
-	font-family: 'Roboto';
+	font-family: 'Dosis';
 	margin: 0px;
-  	background-color: #333;
-  	color: white;
+	color: white;
 }
 
 h1 {
@@ -45,13 +44,6 @@ p.padded
 
 /**/
 
-.icon_point.selected {
-  width: 25px;
-  height: 25px;
-  margin-top: -10px;
-  margin-left: -10px;
-}
-
 .viewpoint {
   background-color: #51A3A3;
 }
@@ -91,12 +83,17 @@ p.padded
 	border: 2px solid white;
 }
 
+.icon_point.selected {
+  width: 15px;
+  height: 15px;
+}
+
 .ringbase {
   position:relative;
-  top:-20px;
-  left:-20px;
-  width:60px;
-  height:60px;
+  top:-19px;
+  left:-19px;
+  width:50px;
+  height:50px;
   border-radius: 50%;
   opacity:0.0;
   z-index:1000;

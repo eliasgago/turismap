@@ -72,6 +72,13 @@ export class LeafletMap extends FluxComponent {
 
   route = null;
 
+
+  public __onClickMap(){
+    console.log('click on map');
+    this._d.dispatchAction(BasicActions.SET_VIEW, 'map');
+  }
+
+
   // update the component based on a new state of the global store
   protected __onModelUpdate(data: Object): void {
     switch (data['action']) {
@@ -120,9 +127,10 @@ export class LeafletMap extends FluxComponent {
             marker.setOpacity(1);  
           }else{
             this.bindIcon(marker);
-            marker.setOpacity(0.5);
+            marker.setOpacity(0.8);
           }
         }
+        this._map.invalidateSize();
         this._map.panTo(
           [selectedPoint.latitude, selectedPoint.longitude],
           {
@@ -169,7 +177,7 @@ export class LeafletMap extends FluxComponent {
       accessToken: tileData['accessToken']
     }).addTo(this._map); 
 
-    backgroundMap.setOpacity(1);
+    backgroundMap.setOpacity(0.3);
   }
 
   private addMarker(mapLocation: MapLocation) {
@@ -186,7 +194,7 @@ export class LeafletMap extends FluxComponent {
       this._d.dispatchAction(BasicActions.SHOW_POINT, { id: markerId });
     });
     this.bindIcon(marker);
-    marker.setOpacity(0.5);
+    marker.setOpacity(0.8);
     return marker;
   }
 
@@ -216,15 +224,15 @@ export class LeafletMap extends FluxComponent {
   }
 
   private bindSelectedIcon(marker): void {
-    /*var iconSelected = L.divIcon({
+    var iconSelected = L.divIcon({
       html: '<div class="icon_point ' + this.getType(marker.options.type) + ' selected"><div class="ringbase ring1"></div></div>'
-    });*/
-
-    var iconSelected = L.icon({
-        iconUrl: 'assets/img/marker.png',
-        iconSize: [40, 40],
-        iconAnchor: [20, 40]
     });
+
+    /*var iconSelected = L.icon({
+        iconUrl: 'assets/img/marker.png',
+        iconSize: [22, 35],
+        iconAnchor: [20, 40]
+    });*/
 
     marker.setIcon(iconSelected); 
 

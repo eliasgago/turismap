@@ -302,8 +302,8 @@ export class MapLocationService
   public getRandomLocation(visibleTypes: Array<MapLocationType>): Observable<MapLocation> {
     var mapLocation: MapLocation = null;
 
-    // var newSelectedIndex = Math.floor((Math.random() * this.points.length));
-    var newSelectedIndex = 6;
+    //var newSelectedIndex = Math.floor((Math.random() * this.points.length));
+    var newSelectedIndex = 4;
 
     let found = false;
     while(!found){

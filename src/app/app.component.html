@@ -5,11 +5,14 @@
     <!--div class="welcome-component">
         <welcome-component></welcome-component>
     </div-->
-    <div class="flex-container wrap">
+    <div class="flex-container" [ngClass]="currentView">
         <div class="summary-component">
             <summary-component></summary-component>
         </div>
-        <div class="map-component" [hidden]="(currentView != 'map')">
+        <div class="detail-component">
+            <detail-component></detail-component>
+        </div>
+        <div class="map-component">
             <div *ngIf="_loading">
               <loading loadingText="Loading Leaflet Map"></loading>
             </div>
@@ -18,9 +21,6 @@
         <div class="actions-component">
             <actions-component></actions-component>
         </div>
-    </div>
-    <div class="detail-component" [hidden]="(currentView != 'detail')">
-        <detail-component></detail-component>
     </div>
     <!--div class="footer-component">
         <footer-component></footer-component>

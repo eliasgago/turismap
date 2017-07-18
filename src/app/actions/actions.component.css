@@ -1,51 +1,52 @@
-.footer {
-  height: 30px;
+.action-button {
+  height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 10px;
-}
-
-.check-component {
-  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.check-component .label {
-  color: white;
-  font-size: 8pt;
-  margin-left: 3px;
+
+.viewpoint-button {
+  background: rgba(84,176,176,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(84,176,176,1) 0%, rgba(81,163,163,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(84,176,176,1)), color-stop(100%, rgba(81,163,163,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(84,176,176,1) 0%, rgba(81,163,163,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(84,176,176,1) 0%, rgba(81,163,163,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(84,176,176,1) 0%, rgba(81,163,163,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(84,176,176,1) 0%, rgba(81,163,163,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#54b0b0', endColorstr='#51a3a3', GradientType=1 );
 }
 
 
-input:checked + .slider.viewpoint {
-  background-color: #51A3A3;
+.site-button {
+  background: rgba(227,159,86,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(227,159,86,1) 0%, rgba(203,144,77,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(227,159,86,1)), color-stop(100%, rgba(203,144,77,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(227,159,86,1) 0%, rgba(203,144,77,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(227,159,86,1) 0%, rgba(203,144,77,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(227,159,86,1) 0%, rgba(203,144,77,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(227,159,86,1) 0%, rgba(203,144,77,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e39f56', endColorstr='#cb904d', GradientType=1 );
 }
 
-input:focus + .slider.viewpoint {
-  box-shadow: 0 0 1px #51A3A3;
+.lodging-button {
+  background: rgba(235,215,124,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(235,215,124,1) 0%, rgba(223,203,116,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(235,215,124,1)), color-stop(100%, rgba(223,203,116,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(235,215,124,1) 0%, rgba(223,203,116,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(235,215,124,1) 0%, rgba(223,203,116,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(235,215,124,1) 0%, rgba(223,203,116,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(235,215,124,1) 0%, rgba(223,203,116,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebd77c', endColorstr='#dfcb74', GradientType=1 );
 }
 
-input:checked + .slider.site {
-  background-color: #CB904D;
-}
-
-input:focus + .slider.site {
-  box-shadow: 0 0 1px #CB904D;
-}
-
-input:checked + .slider.lodging {
-  background-color: #DFCC74;
-}
-
-input:focus + .slider.lodging {
-  box-shadow: 0 0 1px #DFCC74;
-}
-
-input:checked + .slider.winery {
-  background-color: #75485E;
-}
-
-input:focus + .slider.winery {
-  box-shadow: 0 0 1px #75485E;
+.winery-button {
+  background: rgba(133,82,108,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(133,82,108,1) 0%, rgba(117,72,94,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(133,82,108,1)), color-stop(100%, rgba(117,72,94,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(133,82,108,1) 0%, rgba(117,72,94,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(133,82,108,1) 0%, rgba(117,72,94,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(133,82,108,1) 0%, rgba(117,72,94,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(133,82,108,1) 0%, rgba(117,72,94,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#85526c', endColorstr='#75485e', GradientType=1 );
 }

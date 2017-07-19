@@ -98,6 +98,7 @@
        , zoom: 12
        , minZoom: 4
        , maxZoom: 18
+       , trackResize: false
      };
 
      this._store['mapElements'] = [];

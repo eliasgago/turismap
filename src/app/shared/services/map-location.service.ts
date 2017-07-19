@@ -87,14 +87,26 @@ export class MapLocationService
         "type": MapLocationType.VIEWPOINT,
         "name" : "Miradoiro de Cadeiras",
         "lat": 42.3976841411843,
-        "lon": -7.555275857448577
+        "lon": -7.555275857448577,
+        "description": "En la parroquia de Santiorxo se encuentra el mirador que lleva su mismo nombre. Rodeado por un pinar nos deja entrever uno de los infinitos meandros que el Sil realiza hasta juntarse con el Miño. Acondicionado con un pequeño paseo de madera que nos lleva hasta él, durante ese trayecto tenemos varios bancos desde donde podemos comtemplar el río y los cañones que en este punto miden hasta 500m.",
+        "tips": [
+            "Es el mirador desde el cual podemos ver más longitud del río.",
+            "El coche nos lleva hasta un pundo desde donde ya contemplamos los cañones.",
+            "Merendar en uno de esos bancos es uno de los placeres de la Ribeira Sacra."
+        ]
     },
     {
         "id": "chelos",
         "type": MapLocationType.VIEWPOINT,
         "name" : "Miradoiro de Os Chelos",
         "lat": 42.38953276520176,
-        "lon": -7.517826855182647
+        "lon": -7.517826855182647,
+        "description": "En la parroquia de Santiorxo se encuentra el mirador que lleva su mismo nombre. Rodeado por un pinar nos deja entrever uno de los infinitos meandros que el Sil realiza hasta juntarse con el Miño. Acondicionado con un pequeño paseo de madera que nos lleva hasta él, durante ese trayecto tenemos varios bancos desde donde podemos comtemplar el río y los cañones que en este punto miden hasta 500m.",
+        "tips": [
+            "Es el mirador desde el cual podemos ver más longitud del río.",
+            "El coche nos lleva hasta un pundo desde donde ya contemplamos los cañones.",
+            "Merendar en uno de esos bancos es uno de los placeres de la Ribeira Sacra."
+        ]
     },
     {
         "id": "souto_chao",
@@ -170,7 +182,13 @@ export class MapLocationService
         "name" : "Igrexa de San Vicente de Pinol",
         "icon": "./img/iglesia_icon.png",
         "lat": 42.405899815164204,
-        "lon": -7.549495697021484
+        "lon": -7.549495697021484,
+        "description": "En la parroquia de Santiorxo se encuentra el mirador que lleva su mismo nombre. Rodeado por un pinar nos deja entrever uno de los infinitos meandros que el Sil realiza hasta juntarse con el Miño. Acondicionado con un pequeño paseo de madera que nos lleva hasta él, durante ese trayecto tenemos varios bancos desde donde podemos comtemplar el río y los cañones que en este punto miden hasta 500m.",
+        "tips": [
+            "Es el mirador desde el cual podemos ver más longitud del río.",
+            "El coche nos lleva hasta un pundo desde donde ya contemplamos los cañones.",
+            "Merendar en uno de esos bancos es uno de los placeres de la Ribeira Sacra."
+        ]
     },
     {
         "id": "gundivos",
@@ -186,7 +204,13 @@ export class MapLocationService
         "name" : "Igrexa de San Xillao de Lobios",
         "icon": "./img/iglesia_icon.png",
         "lat": 42.40813774626316,
-        "lon": -7.530913352966309
+        "lon": -7.530913352966309,
+        "description": "En la parroquia de Santiorxo se encuentra el mirador que lleva su mismo nombre. Rodeado por un pinar nos deja entrever uno de los infinitos meandros que el Sil realiza hasta juntarse con el Miño. Acondicionado con un pequeño paseo de madera que nos lleva hasta él, durante ese trayecto tenemos varios bancos desde donde podemos comtemplar el río y los cañones que en este punto miden hasta 500m.",
+        "tips": [
+            "Es el mirador desde el cual podemos ver más longitud del río.",
+            "El coche nos lleva hasta un pundo desde donde ya contemplamos los cañones.",
+            "Merendar en uno de esos bancos es uno de los placeres de la Ribeira Sacra."
+        ]
     },
     {
         "id": "donatus",
@@ -303,7 +327,9 @@ export class MapLocationService
     var mapLocation: MapLocation = null;
 
     //var newSelectedIndex = Math.floor((Math.random() * this.points.length));
-    var newSelectedIndex = 4;
+    var testIndexes = [5, 6, 16, 18];
+    var newSelectedIndex = Math.floor((Math.random() * testIndexes.length));;
+    newSelectedIndex = testIndexes[newSelectedIndex];
 
     let found = false;
     while(!found){

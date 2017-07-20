@@ -38,6 +38,7 @@ import { BasicActions } from './shared/actions/basic-actions';
 
 // Typescript Math Toolkit Location
 import { MapLocation } from './shared/model/map-location.model';
+import { MapLocationType } from './shared/model/map-location-type.model';
 import { TSMT$Location } from './shared/model/location.model';
 
 // rxjs imports
@@ -62,6 +63,9 @@ import { Subscription } from 'rxjs/Subscription';
  export class AppComponent extends FluxComponent implements OnInit, AfterViewInit
  {
    protected _loading: boolean = true;    // true if content is being loaded
+
+   protected selectedPoint: MapLocation = null;
+   protected selectedPointClass: string = null;
 
    protected currentView: string;
 
@@ -118,6 +122,13 @@ import { Subscription } from 'rxjs/Subscription';
          this.currentView = data['currentView'];
          this._chgDetector.detectChanges();
        break;
+       case BasicActions.GET_RANDOM_POINT:
+       case BasicActions.SHOW_POINT:
+        this.selectedPoint = <MapLocation> data['selectedPoint'];
+        this.selectedPointClass = 'bottom-' + this.getFolderByType(this.selectedPoint.type);
+        console.log(this.selectedPointClass);
+        this._chgDetector.detectChanges();
+        break;
      }
    }
 
@@ -133,4 +144,19 @@ import { Subscription } from 'rxjs/Subscription';
        this._chgDetector.detectChanges();
      }
    }
+
+
+    private getFolderByType(type: MapLocationType) {
+      switch (type) {
+        case MapLocationType.VIEWPOINT:
+          return 'viewpoint';    
+        case MapLocationType.SITE:
+          return 'site';    
+        case MapLocationType.LODGING:
+          return 'lodging';    
+        case MapLocationType.WINERY:
+          return 'winery';
+      }
+    }
+
  }

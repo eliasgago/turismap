@@ -180,7 +180,7 @@ export class LeafletMap extends FluxComponent {
       accessToken: tileData['accessToken']
     }).addTo(this._map); 
 
-    backgroundMap.setOpacity(0.3);
+    backgroundMap.setOpacity(0.4);
   }
 
   private addMarker(mapLocation: MapLocation) {
@@ -228,7 +228,7 @@ export class LeafletMap extends FluxComponent {
 
   private bindSelectedIcon(marker): void {
     var iconSelected = L.divIcon({
-      html: '<div class="icon_point ' + this.getType(marker.options.type) + ' selected"><div class="ringbase ring1"></div></div>'
+      html: '<div class="pin ' + this.getType(marker.options.type) + '"></div><div class="pulse"></div>'
     });
 
     /*var iconSelected = L.icon({

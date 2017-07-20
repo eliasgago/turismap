@@ -14,24 +14,42 @@
 .summary-component {
   flex: 1 1 100%;
   height: 80%;
+  transition: all 1s;
 }
 
 .map-component {
   flex: 1 1 100%;
   width: 100%;
-  height: 15%;    
+  height: 15%;   
+  transition: all 1s; 
 }
 
 .actions-component {
   flex: 0.3 1 30%;
   width: 30%;
   height: 15%;  
+  transition: all 1s;
 }
 
 .detail-component {
   width: 100%;
   height: 5%;
+  border-bottom: 1px solid #cacaca;
   overflow: scroll;
+  transition: all 1s;
+}
+
+.bottom-viewpoint {
+  border-bottom: 1px solid #51A3A3;
+}
+.bottom-site {
+  border-bottom: 1px solid #CB904D;
+}
+.bottom-odging {
+  border-bottom: 1px solid #DFCC74;
+}
+.bottom-winery {
+  border-bottom: 1px solid #75485E;
 }
 
 .flex-container.map .summary-component {
@@ -54,18 +72,13 @@
 
 .flex-container.detail .summary-component {
   flex: 1 1 100%;
-  height: 40%;
+  height: 35%;
   transition: all 1s;
 }
 
 .flex-container.detail .map-component {
   flex: 1 1 100%;
-  height: 10%; 
-  transition: all 1s;
-}
-
-.flex-container.detail .actions-component {
-  display: none;
+  height: 15%; 
   transition: all 1s;
 }
 

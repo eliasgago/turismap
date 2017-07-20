@@ -1,18 +1,18 @@
 <div class="detail" *ngIf="_loading">
 
-    <div class="header">
+    <div class="header"[ngClass]="selectedPointClass" >
         <div class="location">
-            Amandi
+            <img src="assets/img/marker.png" width="12">&nbsp;Amandi
         </div>
         <div class="open-close-detail">
-            <a href="#" (click)="_showDetail = !_showDetail"><img src="assets/img/up.png"></a>
+            <a href="#" (click)="__onClickOnDetail()"><img src="assets/img/up.png"></a>
         </div>
         <div class="route">
-            14km, 23 min.
+            14km, 23 min.&nbsp;<img src="assets/img/route.png" width="20"> 
         </div>
     </div>
 
-    <div *ngIf="_showDetail">
+    <div class="description" *ngIf="_fullView">
 
         <p>{{selectedPoint.description}}</p>
 

@@ -20,10 +20,27 @@ export class DetailComponent extends FluxComponent {
 	selectedPointClass: string;
 
 	_loading = false;
+    _showDetail = false;
+    _fullView = false;
     
     constructor(private _d: FluxDispatcher, private _chgDetector: ChangeDetectorRef) {
     	super(_d);
     }
+
+
+    public __onClickOnDetail(){
+        this._showDetail = !this._showDetail;
+        if(this._showDetail){
+            this._d.dispatchAction(BasicActions.SET_VIEW, 'detail');
+            this._fullView = true;
+        }else{
+            this._d.dispatchAction(BasicActions.SET_VIEW, '');
+            setTimeout(() => {
+                this._fullView = false;
+            }, 1000);
+        }
+    }
+
 
    	protected __onModelUpdate(data: Object): void {
      	switch (data['action'])

@@ -7,36 +7,38 @@
 
 .flex-container {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
   height: 100%;
 }
 
 .summary-component {
-  flex: 1 1 100%;
-  height: 80%;
+  flex: 1 1 85%;
+  height: 85%;
   transition: all 1s;
 }
 
-.map-component {
-  flex: 1 1 100%;
-  width: 100%;
-  height: 15%;   
-  transition: all 1s; 
-}
-
 .actions-component {
-  flex: 0.3 1 30%;
-  width: 30%;
-  height: 15%;  
+  flex: 1 1 96px;
+  width: 100%;
+  height: 96px;
+  margin-top: -96px;
   transition: all 1s;
 }
 
 .detail-component {
+  flex: 1 1 0%;
+  height: 0%;
   width: 100%;
-  height: 5%;
   border-bottom: 1px solid #cacaca;
   overflow: scroll;
   transition: all 1s;
+}
+
+.map-component {
+  flex: 1 1 15%;
+  height: 15%;
+  width: 100%; 
+  transition: all 1s; 
 }
 
 .bottom-viewpoint {
@@ -52,42 +54,54 @@
   border-bottom: 1px solid #75485E;
 }
 
-.flex-container.map .summary-component {
-  flex: 1 1 100%;
-  height: 40%;
+.flex-container.map {
   transition: all 1s;
 }
 
-.flex-container.map .map-component {
-  flex: 1 1 100%;
-  height: 60%; 
-  transition: all 1s;
+.flex-container.map .summary-component {
+  flex: 1 1 40%;
+  height: 40%;
 }
 
 .flex-container.map .actions-component {
-  flex: none;
-  height: 0%; 
+  flex: 1 1 48px;
+  height: 48px;
+  margin-top: -48px;
+}
+
+.flex-container.map .detail-component {
+  flex: 1 1 0%;
+  height: 0%;
+}
+
+.flex-container.map .map-component {
+  flex: 1 1 60%;
+  height: 60%;
+}
+
+.flex-container.detail {
   transition: all 1s;
 }
 
 .flex-container.detail .summary-component {
-  flex: 1 1 100%;
-  height: 35%;
-  transition: all 1s;
+  flex: 1 1 40%;
+  height: 40%;
 }
 
-.flex-container.detail .map-component {
-  flex: 1 1 100%;
-  height: 15%; 
-  transition: all 1s;
+.flex-container.detail .actions-component {
+  flex: 1 1 48px;
+  height: 48px;
+  margin-top: -48px;
 }
 
 .flex-container.detail .detail-component {
-  display: flex;
-  flex: 1 1 100%;
-  width: 100%;
-  height: 50%; 
-  transition: all 1s;
+  flex: 1 1 45%;
+  height: 45%;
+}
+
+.flex-container.detail .map-component {
+  flex: 1 1 15%;
+  height: 15%;
 }
 
 

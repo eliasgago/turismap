@@ -151,9 +151,15 @@ export class LeafletMap extends FluxComponent {
           }
         }
         break;
-      /*case BasicActions.SET_VIEW:
-        setTimeout(() => { this._map.invalidateSize()}, 1000);
-        break;*/
+      case BasicActions.SET_VIEW:
+        setTimeout(() => { 
+          this._map.invalidateSize({
+            animate: true,
+            duration: 1,
+            easeLinearity: 0.6
+          });
+        }, 1000);
+        break;
     }     
 
   }

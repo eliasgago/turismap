@@ -122,13 +122,6 @@ import { Subscription } from 'rxjs/Subscription';
          this.currentView = data['currentView'];
          this._chgDetector.detectChanges();
        break;
-       case BasicActions.GET_RANDOM_POINT:
-       case BasicActions.SHOW_POINT:
-        this.selectedPoint = <MapLocation> data['selectedPoint'];
-        this.selectedPointClass = 'bottom-' + this.getFolderByType(this.selectedPoint.type);
-        console.log(this.selectedPointClass);
-        this._chgDetector.detectChanges();
-        break;
      }
    }
 

@@ -5,3 +5,14 @@
 	background-color: white;
   	box-shadow: inset 0 0 50px white;
 }
+
+.data {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin-left: 12px;
+	justify-content: flex-end;
+	top: -95px;
+	color: grey;
+	z-index: 500;
+}

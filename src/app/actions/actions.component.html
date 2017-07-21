@@ -1,3 +1,10 @@
-<a href="#" class="action-button main" [ngClass]="selectedPointClass" (click)="__onClickMainAction()">
-  <img src="assets/img/info.png" width="40">
-</a>
+
+<div class="header" *ngIf="_loading">
+    <div class="name">
+        <h1>{{selectedPoint.name}}</h1>
+    </div>
+    <div class="actions">
+        <a href="#" class="info" [ngClass]="selectedPointClass" (click)="__onClickShowDetail()" *ngIf="!_showDetail">i</a>
+        <a href="#" class="close" (click)="__onClickCloseDetail()" *ngIf="_showDetail"><img src="assets/img/close.png"></a>
+    </div>
+</div>

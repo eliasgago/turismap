@@ -1,52 +1,60 @@
-.action-button {
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+
+.header.site {
+  background-color: #CB904D;
+}
+.header.lodging {
+  background-color: #DFCC74;
+}
+.header.winery {
+  background-color: #75485E;
+}
+
+.header .name h1 {
+    color: white;
+    font-size: 20pt;
+    text-shadow: 2px 2px 4px rgba(33, 33, 33, 0.8);
+}
+
+.header div:nth-of-type(1) {
+  margin: 0px 12px;
+}
+
+.header div:nth-of-type(2) {
+  margin: 0px 12px;
+}
+
+.header .actions .info {
+    box-shadow: 2px 2px 4px rgba(33, 33, 33, 0.8);
+  border-radius: 8px;
+  height: 64px;
+  width: 64px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 30pt;
+  text-decoration: none;
 }
 
-
-.viewpoint-button {
-  background: rgba(84,176,176,1);
-  background: -moz-radial-gradient(center, ellipse cover, rgba(84,176,176,1) 0%, rgba(81,163,163,1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(84,176,176,1)), color-stop(100%, rgba(81,163,163,1)));
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(84,176,176,1) 0%, rgba(81,163,163,1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(84,176,176,1) 0%, rgba(81,163,163,1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(84,176,176,1) 0%, rgba(81,163,163,1) 100%);
-  background: radial-gradient(ellipse at center, rgba(84,176,176,1) 0%, rgba(81,163,163,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#54b0b0', endColorstr='#51a3a3', GradientType=1 );
+.header .actions a:visited {
+  color: white;
 }
 
-
-.site-button {
-  background: rgba(227,159,86,1);
-  background: -moz-radial-gradient(center, ellipse cover, rgba(227,159,86,1) 0%, rgba(203,144,77,1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(227,159,86,1)), color-stop(100%, rgba(203,144,77,1)));
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(227,159,86,1) 0%, rgba(203,144,77,1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(227,159,86,1) 0%, rgba(203,144,77,1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(227,159,86,1) 0%, rgba(203,144,77,1) 100%);
-  background: radial-gradient(ellipse at center, rgba(227,159,86,1) 0%, rgba(203,144,77,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e39f56', endColorstr='#cb904d', GradientType=1 );
-}
-
-.lodging-button {
-  background: rgba(235,215,124,1);
-  background: -moz-radial-gradient(center, ellipse cover, rgba(235,215,124,1) 0%, rgba(223,203,116,1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(235,215,124,1)), color-stop(100%, rgba(223,203,116,1)));
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(235,215,124,1) 0%, rgba(223,203,116,1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(235,215,124,1) 0%, rgba(223,203,116,1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(235,215,124,1) 0%, rgba(223,203,116,1) 100%);
-  background: radial-gradient(ellipse at center, rgba(235,215,124,1) 0%, rgba(223,203,116,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebd77c', endColorstr='#dfcb74', GradientType=1 );
-}
-
-.winery-button {
-  background: rgba(133,82,108,1);
-  background: -moz-radial-gradient(center, ellipse cover, rgba(133,82,108,1) 0%, rgba(117,72,94,1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(133,82,108,1)), color-stop(100%, rgba(117,72,94,1)));
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(133,82,108,1) 0%, rgba(117,72,94,1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(133,82,108,1) 0%, rgba(117,72,94,1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(133,82,108,1) 0%, rgba(117,72,94,1) 100%);
-  background: radial-gradient(ellipse at center, rgba(133,82,108,1) 0%, rgba(117,72,94,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#85526c', endColorstr='#75485e', GradientType=1 );
+.header .actions .info.viewpoint {
+background: rgba(97,194,194,1);
+background: -moz-radial-gradient(center, ellipse cover, rgba(97,194,194,1) 0%, rgba(81,163,163,1) 100%);
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(97,194,194,1)), color-stop(100%, rgba(81,163,163,1)));
+background: -webkit-radial-gradient(center, ellipse cover, rgba(97,194,194,1) 0%, rgba(81,163,163,1) 100%);
+background: -o-radial-gradient(center, ellipse cover, rgba(97,194,194,1) 0%, rgba(81,163,163,1) 100%);
+background: -ms-radial-gradient(center, ellipse cover, rgba(97,194,194,1) 0%, rgba(81,163,163,1) 100%);
+background: radial-gradient(ellipse at center, rgba(97,194,194,1) 0%, rgba(81,163,163,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#61c2c2', endColorstr='#51a3a3', GradientType=1 );
 }

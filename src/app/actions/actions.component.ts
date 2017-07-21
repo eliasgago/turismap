@@ -17,16 +17,26 @@ import { MapLocationType } from '../shared/model/map-location-type.model';
 
 export class ActionsComponent extends FluxComponent {
 
-	public selectedPoint: MapLocation;
-	public selectedPointClass: string;
+	selectedPoint: MapLocation = null;
+	selectedPointClass: string;
 
+	_loading = false;
+    _showDetail = false;
+    
     constructor(private _d: FluxDispatcher, private _chgDetector: ChangeDetectorRef) {
     	super(_d);
     }
 
-   	public __onClickMainAction(){
+    public __onClickShowDetail(){
+        this._showDetail = true;
         this._d.dispatchAction(BasicActions.SET_VIEW, 'detail');
-   	}
+    }
+
+    public __onClickCloseDetail(){
+        this._showDetail = false;
+        this._d.dispatchAction(BasicActions.SET_VIEW, '');
+    }
+
 
    	protected __onModelUpdate(data: Object): void {
      	switch (data['action'])
@@ -34,7 +44,8 @@ export class ActionsComponent extends FluxComponent {
        		case BasicActions.GET_RANDOM_POINT:
        		case BasicActions.SHOW_POINT:
 	        	this.selectedPoint = <MapLocation> data['selectedPoint'];
-	        	this.selectedPointClass = this.getFolderByType(this.selectedPoint.type) + '-button';
+	        	this.selectedPointClass = this.getFolderByType(this.selectedPoint.type);
+	   			this._loading = true;
 	   			this._chgDetector.detectChanges();
        			break;
      	}
@@ -52,5 +63,5 @@ export class ActionsComponent extends FluxComponent {
     			return 'winery';
     	}
     }
-    
+
 }

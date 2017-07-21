@@ -1,28 +1,8 @@
 <div class="summary" [ngStyle]="{ 'background-image': 'url(' + selectedPointBackgroundImage + ')'}" *ngIf="_loading">
-    <div class ="chevron">
+    <div class ="chevron left">
         <a href="#"><img src="assets/img/left.png"></a>
     </div>
-    <div class="description">
-        <!--a href="#" (click)="__onShowDetail()"><h1 class="name2">{{selectedPoint.name}}</h1></a-->
-        <h1 class="name2">{{selectedPoint.name}}</h1>
-        <!--div class="summary_point" [ngClass]="selectedPointClass"><div-->
-        <div class="actions">
-            <!--a class="detail" href="#" (click)="__onShowDetail()"><span>Más información</span></a-->
-            <!--a class="route" href="#"><i class="fa fa-map-o"></i></a>
-            <a class="route" href="#">[Detalle]</a>
-            <a class="route" href="#">[Ruta]</a-->
-        </div>
-        <!--div class="view-switch">
-            <span class="label"><i class="fa fa-map-o"></i></span>&nbsp;
-            <label class="switch">
-              <input type="checkbox" [(ngModel)]="showDetail" (ngModelChange)="__onChangeSwitch()">
-              <span class="slider site round"></span>
-            </label>&nbsp;
-            <span class="label"><i class="fa fa-list-alt"></i></span>
-        </div-->
-
-    </div>
-    <div class ="chevron">
+    <div class ="chevron right">
         <a href="#" (click)="__onNextPoint()"><img src="assets/img/right.png"></a>
     </div>
 </div>

@@ -42,6 +42,10 @@ p.padded
   display: none !important;
 }
 
+.leaflet-routing-container {
+  display: none !important;
+}
+
 /**/
 
 .viewpoint {
@@ -75,6 +79,15 @@ p.padded
 .winery.selected {
   border: 2px solid white;
 }
+
+
+
+.flex-container.detail .header .name h1 {
+  font-size: 12pt !important;
+  padding: 6px !important;
+  transition: all 1s;
+}
+
 
 .icon_point {
 	width: 8px;

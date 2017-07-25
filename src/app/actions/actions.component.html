@@ -1,10 +1,10 @@
 
 <div class="header" *ngIf="_loading">
     <div class="name">
-        <h1>{{selectedPoint.name}}</h1>
+        <h1 (click)="__onClickShowDetail()">{{selectedPoint.name}}</h1>
     </div>
     <div class="actions">
-        <a href="#" class="info" [ngClass]="selectedPointClass" (click)="__onClickShowDetail()" *ngIf="!_showDetail">i</a>
-        <a href="#" class="close" (click)="__onClickCloseDetail()" *ngIf="_showDetail"><img src="assets/img/close.png"></a>
+        <!--a href="#" class="info" (click)="__onClickShowDetail()" *ngIf="!_showDetail">i</a-->
+        <a href="#" class="close" (click)="__onClickCloseDetail()" *ngIf="_showDetail"><img src="assets/img/close.png" width="20"></a>
     </div>
 </div>

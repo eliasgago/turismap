@@ -187,6 +187,27 @@ export class LeafletMap extends FluxComponent {
     }).addTo(this._map); 
 
     backgroundMap.setOpacity(0.4);
+
+    var watermark = L.Control.extend({
+        onAdd: function(map) {
+            var img: any = L.DomUtil.create('img');
+
+            img.src = 'assets/img/close.png';
+            img.style.width = '200px';
+
+            return img;
+        },
+
+        onRemove: function(map) {
+            // Nothing to do here
+        }
+    });
+
+    var watermarkFunction = function(opts) {
+        return new watermark(opts);
+    }
+
+    watermarkFunction({ position: 'bottomleft' }).addTo(this._map);
   }
 
   private addMarker(mapLocation: MapLocation) {

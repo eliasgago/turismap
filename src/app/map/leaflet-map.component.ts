@@ -163,6 +163,10 @@ export class LeafletMap extends FluxComponent {
       case BasicActions.CURRENT_LOCATION:
         let location: MapLocation = <MapLocation> data['location'];
         console.log(location);
+        
+        var marker: Marker = L.marker([location.latitude, location.longitude]).addTo(this._map);
+        this.bindCurrentLocationIcon(marker);
+
         this._map.panTo( 
           [location.latitude, location.longitude],
           {
@@ -294,5 +298,14 @@ export class LeafletMap extends FluxComponent {
 
     //$(marker._icon).addClass(marker.options.type);
   }
+
+  private bindCurrentLocationIcon(marker): void {
+    var iconSelected = L.divIcon({
+      html: '<div class="current-location"></div>'
+    });
+
+    marker.setIcon(iconSelected); 
+  }
+
 
  }

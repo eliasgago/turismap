@@ -343,6 +343,18 @@ export class MapLocationService
     return Rx.Observable.of(mapLocation);
   }
 
+
+  public getCurrentLocation(): Observable<MapLocation> {
+    var mapLocation: MapLocation = new MapLocation();
+    var locationFound;
+    
+    mapLocation.latitude = 42.46175290530536;
+    mapLocation.longitude = -7.587263882160186;
+
+    return Rx.Observable.of(mapLocation);
+  }
+
+
   private createMapLocation(point): MapLocation {
       var mapLocation: MapLocation = new MapLocation();
 

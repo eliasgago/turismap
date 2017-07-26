@@ -160,6 +160,18 @@ export class LeafletMap extends FluxComponent {
           });
         }, 1000);
         break;
+      case BasicActions.CURRENT_LOCATION:
+        let location: MapLocation = <MapLocation> data['location'];
+        console.log(location);
+        this._map.panTo( 
+          [location.latitude, location.longitude],
+          {
+            animate: true,
+            duration: 1,
+            easeLinearity: 0.6
+          }
+        );
+        break;
     }     
 
   }
@@ -189,13 +201,25 @@ export class LeafletMap extends FluxComponent {
     backgroundMap.setOpacity(0.4);
 
     var watermark = L.Control.extend({
-        onAdd: function(map) {
-            var img: any = L.DomUtil.create('img');
+        onAdd: (map) => {
+          var dataDiv: any = L.DomUtil.create('div', 'data');
 
-            img.src = 'assets/img/close.png';
-            img.style.width = '200px';
+          var routeADiv: any = L.DomUtil.create('a', 'map-button', dataDiv);
+          var routeImg: any = L.DomUtil.create('img', 'image', routeADiv);
+          routeImg.src = 'assets/img/car.png';
+          routeImg.width = '20';
 
-            return img;
+          var locationADiv: any = L.DomUtil.create('a', 'map-button', dataDiv);
+          var locationImg: any = L.DomUtil.create('img', 'image', locationADiv);
+          locationImg.src = 'assets/img/current_location.png';
+          locationImg.width = '20';
+
+          L.DomEvent.on(locationADiv, 'click', () => {
+            this._d.dispatchAction(BasicActions.CURRENT_LOCATION, null);
+            //console.log(this);
+          }, this)
+
+          return dataDiv;
         },
 
         onRemove: function(map) {
@@ -207,7 +231,7 @@ export class LeafletMap extends FluxComponent {
         return new watermark(opts);
     }
 
-    watermarkFunction({ position: 'bottomleft' }).addTo(this._map);
+    watermarkFunction({ position: 'topleft' }).addTo(this._map);
   }
 
   private addMarker(mapLocation: MapLocation) {

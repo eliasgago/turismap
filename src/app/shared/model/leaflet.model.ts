@@ -260,7 +260,7 @@
 
          this._store['action'] = this._action;
         
-         this._locationService.getLocation()
+         this._mapLocationService.getCurrentLocation()
                               .subscribe( data  => this.__onCurrentLocation(data),
                                           error => this.__onLocationError() );
 
@@ -295,7 +295,7 @@
      // subscribers make a copy of the required slice of the store.  Former is more robust, latter is more efficient.  Try it both ways;
      // the global store is immutable in either case.
 
-     let location: TSMT$Location = <TSMT$Location> this._store['location'];
+     let location: MapLocation = <MapLocation> this._store['location'];
      let selectedPoint: MapLocation = <MapLocation> this._store['selectedPoint'];
      let store: Object           = JSON.parse( JSON.stringify(this._store) );  // this isn't as robust as you may have been led to believe
 
@@ -322,9 +322,9 @@
    {
      if (data)
      {
-       if (data instanceof TSMT$Location)
+       if (data instanceof MapLocation)
        {
-         let location = (<TSMT$Location> data).clone();
+         let location = (<MapLocation> data).clone();
 
          if (location.isError)
            this.__onAddressError();

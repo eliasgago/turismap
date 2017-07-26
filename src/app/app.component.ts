@@ -112,11 +112,6 @@ import { Subscription } from 'rxjs/Subscription';
    {
      switch (data['action'])
      {
-       case BasicActions.CURRENT_LOCATION:
-       case BasicActions.ADDRESS:
-         let location: TSMT$Location = <TSMT$Location> data['location'];
-         this._leafletMap.toLocation(location.latitude, location.longitude);
-       break;
        case BasicActions.SET_VIEW:
          console.log(data['currentView']);
          this.currentView = data['currentView'];

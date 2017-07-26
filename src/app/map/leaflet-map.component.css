@@ -4,27 +4,3 @@
   	height: 100%; 
 	background-color: white;
 }
-
-.data {
-	position: absolute;
-	bottom: 0px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	color: grey;
-	z-index: 500;
-}
-
-.data .map-button {
-  	background-color: rgba(0,0,0,0.3);
-  	box-shadow: 2px 2px 4px rgba(33, 33, 33, 0.2);
- 	border-radius: 6px;
-  	padding: 6px;
-  	margin: 12px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: 10pt;
-	color: white;
-}

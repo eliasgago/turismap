@@ -67,7 +67,7 @@ import { Subscription } from 'rxjs/Subscription';
    protected selectedPoint: MapLocation = null;
    protected selectedPointClass: string = null;
 
-   protected currentView: string;
+   protected currentView: string = 'summary';
 
    // access the leaflet map
    @ViewChild(LeafletMap) _leafletMap: LeafletMap;

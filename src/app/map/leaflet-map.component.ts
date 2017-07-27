@@ -176,6 +176,37 @@ export class LeafletMap extends FluxComponent {
           }
         );
         break;
+
+      case BasicActions.SHOW_ROUTE:
+        let newRoute: Array<MapLocation> = <Array<MapLocation>> data['route'];
+        console.log(newRoute[0]);
+        
+        if(this.route){
+          this._map.removeControl(this.route);   
+        }
+        this.route = this.Leaflet.Routing.control({
+          waypoints: [
+            L.latLng(newRoute[0].latitude, newRoute[0].longitude),
+            L.latLng(newRoute[1].latitude, newRoute[1].longitude)
+          ],
+          language: 'en',
+          createMarker: function() { return null; },
+          lineOptions: {
+              styles: [{color: '#0078ff', opacity: 1, weight: 2}]
+           }
+        });
+        this.route.addTo(this._map);
+
+        console.log(this.route);
+
+        this.route.on('routeselected', (e) => {
+          console.log(e);
+        })
+
+
+        console.log(this.route._container);
+
+        break;
     }     
 
   }
@@ -204,7 +235,7 @@ export class LeafletMap extends FluxComponent {
 
     backgroundMap.setOpacity(0.4);
 
-    var watermark = L.Control.extend({
+    var routeControl = L.Control.extend({
         onAdd: (map) => {
           var dataDiv: any = L.DomUtil.create('div', 'data');
 
@@ -217,6 +248,12 @@ export class LeafletMap extends FluxComponent {
           var locationImg: any = L.DomUtil.create('img', 'image', locationADiv);
           locationImg.src = 'assets/img/current_location.png';
           locationImg.width = '20';
+
+          L.DomEvent.on(routeADiv, 'click', () => {
+            this._d.dispatchAction(BasicActions.SET_VIEW, 'route');
+            this._d.dispatchAction(BasicActions.SHOW_ROUTE, null);
+            //console.log(this);
+          }, this)
 
           L.DomEvent.on(locationADiv, 'click', () => {
             this._d.dispatchAction(BasicActions.CURRENT_LOCATION, null);
@@ -231,11 +268,50 @@ export class LeafletMap extends FluxComponent {
         }
     });
 
-    var watermarkFunction = function(opts) {
-        return new watermark(opts);
+    var routeControlFunction = function(opts) {
+        return new routeControl(opts);
     }
 
-    watermarkFunction({ position: 'topleft' }).addTo(this._map);
+    routeControlFunction({ position: 'topright' }).addTo(this._map);
+
+
+    var optionsControl = L.Control.extend({
+        onAdd: (map) => {
+          var dataDiv: any = L.DomUtil.create('div', 'data');
+
+          var maximizeADiv: any = L.DomUtil.create('a', 'map-button reverse maximize', dataDiv);
+          var maximizeImg: any = L.DomUtil.create('img', 'image', maximizeADiv);
+          maximizeImg.src = 'assets/img/maximize.png';
+          maximizeImg.width = '20';
+
+          var minimizeADiv: any = L.DomUtil.create('a', 'map-button reverse minimize', dataDiv);
+          var minimizeImg: any = L.DomUtil.create('img', 'image', minimizeADiv);
+          minimizeImg.src = 'assets/img/minimize.png';
+          minimizeImg.width = '20';
+
+          L.DomEvent.on(maximizeADiv, 'click', () => {
+            this._d.dispatchAction(BasicActions.SET_VIEW, 'map');
+            //console.log(this);
+          }, this)
+
+          L.DomEvent.on(minimizeADiv, 'click', () => {
+            this._d.dispatchAction(BasicActions.SET_VIEW, 'summary');
+            //console.log(this);
+          }, this)
+
+          return dataDiv;
+        },
+
+        onRemove: function(map) {
+            // Nothing to do here
+        }
+    });
+
+    var optionsControlFunction = function(opts) {
+        return new optionsControl(opts);
+    }
+
+    optionsControlFunction({ position: 'topleft' }).addTo(this._map);
   }
 
   private addMarker(mapLocation: MapLocation) {

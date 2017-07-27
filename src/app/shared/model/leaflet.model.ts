@@ -266,6 +266,19 @@
 
          validAction = false;    // wait until service data is completely processed before responding
        break;
+
+       case BasicActions.SHOW_ROUTE:
+         this._store['action'] = this._action;
+
+         let destination: MapLocation = <MapLocation> this._store['selectedPoint'];
+        
+         this._mapLocationService.getCurrentLocation()
+                              .subscribe( data  => this.__onPrepareRoute(data, destination),
+                                          error => this.__onLocationError() );
+
+         validAction = false;    // wait until service data is completely processed before responding
+       break;
+       
        
        case BasicActions.ADDRESS:
          if (payload.hasOwnProperty('address'))
@@ -314,6 +327,13 @@
        store['mapElements'][i] = mapLocation.clone();
      }
 
+     if(this._store['route']) {
+       for(var i = 0; i < this._store['route'].length; i++){
+         let mapLocation: MapLocation = <MapLocation> this._store['route'][i];
+         store['route'][i] = mapLocation.clone();
+       }
+     }
+
      this._subscribers.map( (s:Subject<any>) => s.next(store) );
    }
 
@@ -331,6 +351,26 @@
          else
          {
            this._store['location'] = location;
+
+           this.__updateSubscribers();
+         }
+       }
+     }
+   }
+
+   private __onPrepareRoute(data: any, destination: MapLocation): void
+   {
+     if (data)
+     {
+       if (data instanceof MapLocation)
+       {
+         let origin = (<MapLocation> data).clone();
+
+         if (origin.isError)
+           this.__onAddressError();
+         else
+         {
+           this._store['route'] = [origin, destination];
 
            this.__updateSubscribers();
          }

@@ -34,7 +34,7 @@ export class ActionsComponent extends FluxComponent {
 
     public __onClickCloseDetail(){
         this._showDetail = false;
-        this._d.dispatchAction(BasicActions.SET_VIEW, '');
+        this._d.dispatchAction(BasicActions.SET_VIEW, 'summary');
     }
 
 

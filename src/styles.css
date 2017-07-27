@@ -82,10 +82,18 @@ p.padded
 
 
 
-.flex-container.detail .header .name h1 {
+.flex-container.detail .header .name h1, .flex-container.map .header .name h1, .flex-container.route .header .name h1 {
   font-size: 12pt !important;
   padding: 6px !important;
   transition: all 1s;
+}
+
+.flex-container.summary .map-component .minimize, .flex-container.detail .map-component .minimize {
+  display: none;
+}
+
+.flex-container.map .map-component .maximize, .flex-container.route .map-component .maximize {
+  display: none;
 }
 
 
@@ -571,9 +579,10 @@ p.padded
 
 .data .map-button {
   background-color: rgba(33,33,33,0.8);
+  border: 1px solid rgba(33,33,33,0.3);
   box-shadow: 2px 2px 4px rgba(33, 33, 33, 0.2);
   border-radius: 6px;
-  padding: 6px;
+  padding: 12px;
   margin: 6px;
   display: flex;
   flex-direction: column;
@@ -581,6 +590,11 @@ p.padded
   justify-content: center;
   font-size: 10pt;
   color: white;
+}
+
+.data .map-button.reverse {
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(33,33,33,0.1);
 }
 
 

@@ -58,23 +58,23 @@
   transition: all 1s;
 }
 
-.flex-container.map .summary-component {
+.flex-container.map .summary-component, .flex-container.route .summary-component {
   flex: 1 1 40%;
   height: 40%;
 }
 
-.flex-container.map .actions-component {
+.flex-container.map .actions-component, .flex-container.route .actions-component {
   flex: 1 1 48px;
   height: 48px;
   margin-top: -48px;
 }
 
-.flex-container.map .detail-component {
+.flex-container.map .detail-component, .flex-container.route .detail-component {
   flex: 1 1 0%;
   height: 0%;
 }
 
-.flex-container.map .map-component {
+.flex-container.map .map-component, .flex-container.route .map-component {
   flex: 1 1 60%;
   height: 60%;
 }

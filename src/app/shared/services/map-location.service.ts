@@ -343,6 +343,62 @@ export class MapLocationService
     return Rx.Observable.of(mapLocation);
   }
 
+  public searchLocation(searchText: string): Observable<MapLocation> {
+
+    var result: Array<MapLocation> = [];
+
+    for (var i = this.points.length - 1; i >= 0; i--) {
+        if(this.points[i].name.toLowerCase().indexOf(searchText.toLowerCase()) != -1) {
+            var mapLocation: MapLocation = new MapLocation();
+            mapLocation.id = this.points[i].id;
+            mapLocation.type = this.points[i].type;
+            mapLocation.name = this.points[i].name;
+            mapLocation.latitude = this.points[i].lat;
+            mapLocation.longitude = this.points[i].lon;
+
+            result.push(mapLocation);
+        }
+    }    
+
+    return Rx.Observable.from(result);
+  }
+
+  public searchOtherLocation(searchText: string): Observable<MapLocation> {
+    let location: MapLocation = new MapLocation();
+
+    return this._http
+        .get("http://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(searchText) + '&components=country:ES&postalCode:27460')
+        .map(res => res.json())
+        .map(result => {
+            if (result.status !== "OK")
+            {
+                console.log( "Error attempting to encode: ", searchText);
+                location.name = searchText;
+                location.isError = true;
+
+                return location;
+            } else {
+
+                console.log(result);
+
+                location.name            = result.results[0].formatted_address;
+                location.latitude           = result.results[0].geometry.location.lat;
+                location.longitude          = result.results[0].geometry.location.lng;
+
+                /*let viewPort: any   = result.results[0].geometry.viewport;
+                let bounds: Object  = L.latLngBounds(
+                  { lat: viewPort.southwest.lat, lng: viewPort.southwest.lng},
+                  { lat: viewPort.northeast.lat, lng: viewPort.northeast.lng}
+                );
+
+                location.setData('viewBounds', bounds);*/
+
+                return location;
+            }
+        }
+    );
+  }
+
 
   public getCurrentLocation(): Observable<MapLocation> {
     var mapLocation: MapLocation = new MapLocation();

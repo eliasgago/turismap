@@ -34,10 +34,15 @@ import { BasicActions } from '../shared/actions/basic-actions';
 import * as L from 'leaflet';
 import { Map } from 'leaflet';
 import { Marker } from 'leaflet';
+import { FeatureGroup } from 'leaflet';
 import 'leaflet-routing-machine';
 
 import { MapLocation } from '../shared/model/map-location.model';
 import { MapLocationType } from '../shared/model/map-location-type.model';
+import { Route } from '../shared/model/route.model';
+import { RouteInstruction } from '../shared/model/route-instruction.model';
+
+import { RouteInstructionFactory } from '../shared/factory/route-instruction.factory';
 
 @Component({
   selector: 'leaflet-map',
@@ -50,18 +55,22 @@ import { MapLocationType } from '../shared/model/map-location-type.model';
 export class LeafletMap extends FluxComponent {
 
   protected _map: Map;           // leaflet map
+  protected _layerPoints: FeatureGroup;
   protected _markers: Array<any> = [];
 
   // this variable is only for routing machine (error on TypeScript)
   private Leaflet: any = L;
+  private _formatter: any;
 
   // Outputs
   @Output() layerAdded  : EventEmitter<any> = new EventEmitter();
   @Output() layerRemoved: EventEmitter<any> = new EventEmitter();
 
-  constructor(private _d: FluxDispatcher)
+  constructor(private _d: FluxDispatcher, private _routeInstructionFactory: RouteInstructionFactory)
    {
-     super(_d);
+    super(_d);
+
+    this._formatter = new this.Leaflet.Routing.Formatter({});
    }
 
 
@@ -93,6 +102,7 @@ export class LeafletMap extends FluxComponent {
           let marker = this.addMarker(mapLocation);
           this._markers.push(marker);
         }
+        this._layerPoints = L.featureGroup(this._markers).addTo(this._map); 
 
         /*if(this.route){
           this._map.removeControl(this.route);   
@@ -119,7 +129,7 @@ export class LeafletMap extends FluxComponent {
 
       case BasicActions.GET_RANDOM_POINT:
       case BasicActions.SHOW_POINT:
-        let selectedPoint: MapLocation = <MapLocation> data['selectedPoint'];
+        var selectedPoint: MapLocation = <MapLocation> data['selectedPoint'];
         for (var i = this._markers.length - 1; i >= 0; i--) {
           let marker = this._markers[i];
           if(marker.options.markerId == selectedPoint.id ){
@@ -131,14 +141,20 @@ export class LeafletMap extends FluxComponent {
           }
         }
         this._map.invalidateSize();
-        this._map.panTo(
+
+        this.showOnMap(selectedPoint);
+        
+        /*this._map.panTo(
           [selectedPoint.latitude, selectedPoint.longitude],
           {
             animate: true,
             duration: 1,
             easeLinearity: 0.6
           }
-        );
+        );*/
+
+
+        // this._map.fitBounds(this._layerPoints.getBounds());
         break;
       case BasicActions.CHANGE_VISIBLE_TYPES:
         let visibleTypes = data['visibleTypes'];
@@ -178,16 +194,16 @@ export class LeafletMap extends FluxComponent {
         break;
 
       case BasicActions.SHOW_ROUTE:
-        let newRoute: Array<MapLocation> = <Array<MapLocation>> data['route'];
-        console.log(newRoute[0]);
+        let newRoute: Route = <Route> data['route'];
+        var selectedPoint: MapLocation = <MapLocation> data['selectedPoint'];
         
         if(this.route){
           this._map.removeControl(this.route);   
         }
         this.route = this.Leaflet.Routing.control({
           waypoints: [
-            L.latLng(newRoute[0].latitude, newRoute[0].longitude),
-            L.latLng(newRoute[1].latitude, newRoute[1].longitude)
+            L.latLng(newRoute.waypoints[0].latitude, newRoute.waypoints[0].longitude),
+            L.latLng(newRoute.waypoints[1].latitude, newRoute.waypoints[1].longitude)
           ],
           language: 'en',
           createMarker: function() { return null; },
@@ -200,11 +216,15 @@ export class LeafletMap extends FluxComponent {
         console.log(this.route);
 
         this.route.on('routeselected', (e) => {
-          console.log(e);
-        })
-
-
-        console.log(this.route._container);
+          console.log(e.route);
+          let instructions: Array<RouteInstruction> = this.getRouteInstructions(e.route.instructions);
+          this._d.dispatchAction(BasicActions.SET_ROUTE, {
+            arrive: selectedPoint.name,
+            totalDistance: this._formatter.formatDistance(e.route.summary.totalDistance),
+            totalTime: this._formatter.formatTime(e.route.summary.totalTime),
+            instructions: instructions
+          });
+        });
 
         break;
     }     
@@ -233,9 +253,9 @@ export class LeafletMap extends FluxComponent {
       accessToken: tileData['accessToken']
     }).addTo(this._map); 
 
-    backgroundMap.setOpacity(0.4);
+    // backgroundMap.setOpacity(0.4); 
 
-    var routeControl = L.Control.extend({
+    /*var routeControl = L.Control.extend({
         onAdd: (map) => {
           var dataDiv: any = L.DomUtil.create('div', 'data');
 
@@ -311,7 +331,7 @@ export class LeafletMap extends FluxComponent {
         return new optionsControl(opts);
     }
 
-    optionsControlFunction({ position: 'topleft' }).addTo(this._map);
+    optionsControlFunction({ position: 'topleft' }).addTo(this._map);*/
   }
 
   private addMarker(mapLocation: MapLocation) {
@@ -319,7 +339,7 @@ export class LeafletMap extends FluxComponent {
         markerId: mapLocation.id,
         type: mapLocation.type
     };
-    var marker: Marker = L.marker([mapLocation.latitude, mapLocation.longitude], options).addTo(this._map);
+    var marker: Marker = L.marker([mapLocation.latitude, mapLocation.longitude], options);
     marker.on('click', (e) => {
       var marker = e.target;
       var markerId = marker.options.markerId;
@@ -381,6 +401,29 @@ export class LeafletMap extends FluxComponent {
     });
 
     marker.setIcon(iconSelected); 
+  }
+
+  private getRouteInstructions(instructions: Array<any>): Array<RouteInstruction> {
+    let routeInstructions: Array<RouteInstruction> = []
+    for (var i = 0; i < instructions.length; i++) {
+      let instruction = instructions[i];
+      routeInstructions.push(this._routeInstructionFactory.createRouteInstruction(
+        instruction.direction,
+        this._formatter.formatDistance(instruction.distance),
+        instruction.road,
+        instruction.text,
+        this._formatter.formatTime(instruction.time),
+        this._formatter.getIconName(instruction, i)
+      ));
+    }
+    return routeInstructions;
+  }
+
+  private showOnMap(selectedPoint: MapLocation){
+    var targetPoint = this._map.project([selectedPoint.latitude, selectedPoint.longitude], this._map.getZoom()).subtract([0, -300 / 2]),
+    targetLatLng = this._map.unproject(targetPoint, this._map.getZoom());
+
+    this._map.setView(targetLatLng, this._map.getZoom());
   }
 
 

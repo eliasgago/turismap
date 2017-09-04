@@ -44,6 +44,8 @@
  import { TSMT$Location } from './location.model';
  import { MapLocation } from './map-location.model';
  import { MapLocationType } from './map-location-type.model';
+ import { Route } from './route.model';
+ import { RouteInstruction } from './route-instruction.model';
 
  // leaflet
  import * as L from 'leaflet';
@@ -88,7 +90,7 @@
      this._store['visibleTypes'] = [MapLocationType.VIEWPOINT, MapLocationType.SITE, MapLocationType.LODGING];
 
      this._store['tileData'] = {
-      url: "https://api.mapbox.com/styles/v1/eliasgago/cj4k50dya483n2rmhbvbpteoq/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZWxpYXNnYWdvIiwiYSI6ImNqM3ZtbDlheTAwMG8zMW8wYzNocGVzcXcifQ.3Ex1pscNCyDO4Pdq3uIqLw",
+      url: "https://api.mapbox.com/styles/v1/eliasgago/cj6wdigx7091o2rp5dbs1niwe/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZWxpYXNnYWdvIiwiYSI6ImNqM3ZtbDlheTAwMG8zMW8wYzNocGVzcXcifQ.3Ex1pscNCyDO4Pdq3uIqLw",
       accessToken: 'pk.eyJ1IjoiZWxpYXNnYWdvIiwiYSI6ImNqM3ZtbDlheTAwMG8zMW8wYzNocGVzcXcifQ.3Ex1pscNCyDO4Pdq3uIqLw'
      };
 
@@ -166,7 +168,7 @@
    *
    * @return Nothing - All subscribers are notified after the model is updated
    */
-   public dispatchAction(action: number, payload: Object=null): void
+   public dispatchAction(action: number, payload: any=null): void
    {
      let validAction: Boolean = false;
      let data:Object;
@@ -279,6 +281,41 @@
          validAction = false;    // wait until service data is completely processed before responding
        break;
        
+       case BasicActions.SET_ROUTE:
+         this._store['action'] = this._action;
+
+         let route: Route = this._store['route'];
+         route.arrive = payload.arrive;
+         route.totalDistance = payload.totalDistance;
+         route.totalTime = payload.totalTime;
+         route.instructions = <Array<RouteInstruction>> payload.instructions;
+         console.log(this._store['route']);
+        
+         validAction = true;    // wait until service data is completely processed before responding
+       break;
+
+
+       case BasicActions.SEARCH_POINT:
+         this._store['action'] = this._action;
+         this._store['foundElements'] = [];
+         
+         var searchText: string = payload;
+         this._mapLocationService.searchLocation(searchText)
+          .subscribe( 
+            data  => {
+              console.log(data);
+              this._store['foundElements'].push(data);
+            },
+            error => {
+            },
+            () => {
+             this.__updateSubscribers();
+            }
+         );
+         validAction = false; 
+       break;
+
+       
        
        case BasicActions.ADDRESS:
          if (payload.hasOwnProperty('address'))
@@ -310,6 +347,7 @@
 
      let location: MapLocation = <MapLocation> this._store['location'];
      let selectedPoint: MapLocation = <MapLocation> this._store['selectedPoint'];
+     let route: Route = <Route> this._store['route'];
      let store: Object           = JSON.parse( JSON.stringify(this._store) );  // this isn't as robust as you may have been led to believe
 
      // this is the hack
@@ -327,12 +365,15 @@
        store['mapElements'][i] = mapLocation.clone();
      }
 
-     if(this._store['route']) {
-       for(var i = 0; i < this._store['route'].length; i++){
-         let mapLocation: MapLocation = <MapLocation> this._store['route'][i];
-         store['route'][i] = mapLocation.clone();
+     if(this._store['foundElements']){
+       for(var i = 0; i < this._store['foundElements'].length; i++){
+         let mapLocation: MapLocation = <MapLocation> this._store['foundElements'][i];
+         store['foundElements'][i] = mapLocation.clone();
        }
      }
+
+     if(store['route'])
+       store['route'] = route.clone();    
 
      this._subscribers.map( (s:Subject<any>) => s.next(store) );
    }
@@ -370,7 +411,9 @@
            this.__onAddressError();
          else
          {
-           this._store['route'] = [origin, destination];
+           let route: Route = new Route();
+           route.waypoints = [origin, destination];
+           this._store['route'] = route;
 
            this.__updateSubscribers();
          }

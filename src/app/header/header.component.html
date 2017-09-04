@@ -1,22 +1,23 @@
-<div style="width: 100%;height: 30px; color: white; position: absolute; top:0; left: 0; z-index: 1000;">
-  <div style="width:100%; display: flex; min-height: 100%; background-color: rgba(33,33,33,0.1);">
-    <div style="display:flex; flex-grow: 1; align-items: center; min-height: 100%; margin: 6px;">
-      <img src="assets/img/icon.png" height="30">
-    </div>
-    <div style="flex-grow: 1; min-height: 100%; width: 100%;">
-      <div style=" display: flex; flex-direction: row; align-items: center; min-height: 100%; margin: 6px; font-size: 12pt;">
-        Explora el paraíso, descubre Sober.
-      </div>
-    </div>
-    <div style="min-height: 100%;">
-      <div style="display: flex; justify-content: center; flex-direction: row; align-items: center; min-height: 100%; margin: 6px;">
-        <a href="" style="font-size: 16pt;"><i-search class="icon"></i-search></a>
-      </div>
-    </div>
-    <div style="min-height: 100%;">
-      <div style="display: flex; justify-content: center; flex-direction: row; align-items: center; min-height: 100%; margin: 6px;">
-        <a href="" style="font-size: 16pt;"><i-menu class="icon"></i-menu></a>
-      </div>
-    </div>
+<div class="header">
+  <div class="logo">
+    <img src="assets/img/icon.png" height="25">
   </div>
+  <div class="title">
+    Explora el paraíso, descubre Sober.
+  </div>
+  <div class="search">
+    <form>
+      <input class="sb-search-input" type="search" value="" name="search" id="search" [(ngModel)]="searchText" (focus)="focusSearch()" (blur)="blurSearch()" (keyup)="search($event)" [ngClass]="searchClass">
+    </form>
+    <ul class="results" [hidden]="foundElements.length == 0">
+      <li *ngFor="let element of foundElements" (click)="showPoint(element.id)">
+        {{element.name}}
+      </li>
+    </ul>
+  </div>
+  <!--div style="min-height: 100%;">
+    <div style="display: flex; justify-content: center; flex-direction: row; align-items: center; min-height: 100%; margin: 6px;">
+      <a href="" style="font-size: 16pt;"><i-menu class="icon"></i-menu></a>
+    </div>
+  </div-->
 </div>

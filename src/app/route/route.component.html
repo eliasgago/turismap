@@ -1,0 +1,37 @@
+<div class="route" *ngIf="_loading">
+    <div class="tips" *ngIf="route.instructions">
+
+        <div class="leaflet-routing-alt">
+            <div class="header">
+                <div class="data">
+                    <h2>{{route.arrive}}</h2>
+                    <h3>{{route.totalDistance}}, {{route.totalTime}}</h3>
+                </div>
+                <div class="image">
+                    <img [src]="selectedPointImage" />
+                </div>
+            </div>
+            <table class="">
+                <colgroup class="">
+                    <col class="leaflet-routing-instruction-icon">
+                    <col class="leaflet-routing-instruction-text">
+                    <col class="leaflet-routing-instruction-distance">
+                </colgroup>
+                <tbody class="">
+                    <tr class="" *ngFor="let routeInstruction of route.instructions">
+                        <td class="">
+                            <span class="leaflet-routing-icon" [ngClass]="'leaflet-routing-icon-' + routeInstruction.type"></span>
+                        </td>
+                        <td class="">{{routeInstruction.text}}</td>
+                        <td class="">{{routeInstruction.distance}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--div *ngFor="let routeInstruction of route.instructions">
+            <div><span class="leaflet-routing-icon leaflet-routing-icon-turn-right"></span></div>
+            <div>{{routeInstruction.text}}</div>
+            <div>{{routeInstruction.distance}}</div>
+        </div-->
+    </div>
+</div>

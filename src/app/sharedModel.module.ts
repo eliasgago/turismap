@@ -30,6 +30,8 @@ import { LeafletModel    } from './shared/model/leaflet.model';
 import { MapLocationService } from './shared/services/map-location.service';
 import { LocationService } from './shared/services/location.service';
 import { Geocode         } from './shared/services/geocode.service';
+import { RouteInstructionFactory    } from './shared/factory/route-instruction.factory';
+
 
 @NgModule({})
 export class SharedModelModule 
@@ -38,7 +40,7 @@ export class SharedModelModule
   {
     return {
       ngModule: SharedModelModule,
-      providers: [LeafletModel, LocationService, Geocode, MapLocationService]
+      providers: [LeafletModel, LocationService, Geocode, MapLocationService, RouteInstructionFactory]
     };
   }
 }

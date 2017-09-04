@@ -600,20 +600,6 @@ p.padded
 
 
 /* Input Search */
-input[type=search] {
-  display:block;
-  margin: 0 0 0 auto;
-  width: 130px;
-  box-sizing: border-box;
-  border: 1px solid white;
-  border-radius: 4px;
-  font-size: 12pt;
-  background-color: white;
-  background-image: url('https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png');
-  background-position: 5px 5px;
-  background-repeat: no-repeat;
-  padding: 4px 25px;
-}
 
 .icon svg {
 	stroke: #fff;

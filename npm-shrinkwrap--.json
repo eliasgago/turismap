@@ -1,0 +1,16 @@
+{
+  "name": "Angular2CLI-Leaflet",
+  "version": "1.0.0",
+  "dependencies": {
+    "leaflet-routing-machine": {
+      "version": "^3.2.5",
+      "from": "leaflet-routing-machine@3.2.5",
+      "dependencies": {
+        "osrm-text-instructions": {
+          "version": "0.5.2",
+          "from": "osrm-text-instructions@0.1.0"
+        }
+      }
+    }
+  }
+}

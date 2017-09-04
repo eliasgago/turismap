@@ -23,7 +23,9 @@ export enum BasicActions
   GET_RANDOM_POINT, 	// get a point to mark the map
   SHOW_POINT,			// point selected on map
   SHOW_ROUTE,
+  SET_ROUTE,
   SET_VIEW,
+  SEARCH_POINT,
   CHANGE_VISIBLE_TYPES,	// change types to show on map
   LOCATION_ERROR,       // error in requesting current location
   ADDRESS_ERROR,        // error in requesting navigate to specified address

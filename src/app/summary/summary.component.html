@@ -1,18 +1,18 @@
-<div class="summary" [ngStyle]="{ 'background-image': 'url(' + selectedPointBackgroundImage + ')'}" *ngIf="_loading">
-    <div class ="chevron left">
-        <a href="#"><img src="assets/img/left.png"></a>
-    </div>
-    <div class ="chevron right">
-        <a href="#" (click)="__onNextPoint()"><img src="assets/img/right.png"></a>
-    </div>
-</div>
 
-<!--div style="width: 100%; margin-top: -48px;">
-    <div class="switch">
-      <input type="radio" class="switch-input" name="view" id="map" checked="" (click)="__onShowMap()">
-      <label for="map" class="switch-label switch-label-off">Mapa</label>
-      <input type="radio" class="switch-input" name="view" id="detail" (click)="__onShowDetail()">
-      <label for="detail" class="switch-label switch-label-on">Detalle</label>
-      <span class="switch-selection"></span>
-    </div>
-</div-->
+<section class="carousel_container">
+  <div id="carousel" [style.transform]="transformProperty" (swipeleft)="__onNextCard($event)" (swiperight)="__onPreviousCard($event)" *ngIf="_loading">
+
+    <figure *ngFor="let element of elements; let i = index" [style.transform]="getTransformation(i)">
+      <div class="image" [ngStyle]="{ 'background-image': 'url(\'assets/img/' + getFolderByType(element.type) + '/' + element.id + '.jpg\')'}"></div>
+      <div class="name">
+          <h1 >{{element.name}}</h1>
+          <!--h1 (click)="__onClickShowDetail()">{{element.name}}</h1-->
+      </div>
+      <div class="actions">
+          <!--a href="#" class="info" (click)="__onClickShowDetail()" *ngIf="!_showDetail">i</a-->
+          <!--a href="#" class="close" (click)="__onClickCloseDetail()" *ngIf="_showDetail"><img src="assets/img/close.png" width="20"></a-->
+      </div>
+    </figure>
+
+  </div>
+</section>

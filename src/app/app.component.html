@@ -1,4 +1,4 @@
-<div style="height: 100vh;">
+<div style="height: calc(100vh - 45px);">
     <div class="header-component">
         <header-component></header-component>
     </div>
@@ -9,18 +9,21 @@
         <div class="summary-component">
             <summary-component></summary-component>
         </div>
-        <div class="actions-component">
+        <!--div class="actions-component">
             <actions-component></actions-component>
         </div>
         <div class="detail-component">
             <detail-component></detail-component>
-        </div>
+        </div-->
         <div class="map-component">
             <div *ngIf="_loading">
               <loading loadingText="Loading Leaflet Map"></loading>
             </div>
             <leaflet-map (layerAdded)="__onLayerAdded($event)"></leaflet-map>
         </div>
+        <!--div class="route-component">
+            <route-component></route-component>
+        </div-->
     </div>
     <!--div class="footer-component">
         <footer-component></footer-component>

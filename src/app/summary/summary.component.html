@@ -3,7 +3,7 @@
   <div id="carousel" [style.transform]="transformProperty" (swipeleft)="__onNextCard($event)" (swiperight)="__onPreviousCard($event)" *ngIf="_loading">
 
     <figure *ngFor="let element of elements; let i = index" [style.transform]="getTransformation(i)">
-      <div class="image" [ngStyle]="{ 'background-image': 'url(\'assets/img/' + getFolderByType(element.type) + '/' + element.id + '.jpg\')'}"></div>
+      <div class="image" [ngStyle]="{ 'background-image': 'url(\'' + element.image + '\')'}"></div>
       <div class="name">
           <h1 >{{element.name}}</h1>
           <!--h1 (click)="__onClickShowDetail()">{{element.name}}</h1-->

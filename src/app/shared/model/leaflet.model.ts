@@ -255,7 +255,7 @@
          break;
 
 
-       case BasicActions.CURRENT_LOCATION:
+       case BasicActions.SHOW_CURRENT_LOCATION:
          // note that you could cache the current location (once fetched) and maintain that in the global store as well if you expect this path to be executed
          // many times.
          let location: TSMT$Location = <TSMT$Location> this._store['location'];
@@ -267,6 +267,15 @@
                                           error => this.__onLocationError() );
 
          validAction = false;    // wait until service data is completely processed before responding
+       break;
+
+       case BasicActions.HIDE_CURRENT_LOCATION:
+         // note that you could cache the current location (once fetched) and maintain that in the global store as well if you expect this path to be executed
+         // many times.
+         this._store['action'] = this._action;
+         this._store['location'] = null;
+        
+         validAction = true;    // wait until service data is completely processed before responding
        break;
 
        case BasicActions.SHOW_ROUTE:
@@ -351,7 +360,8 @@
      let store: Object           = JSON.parse( JSON.stringify(this._store) );  // this isn't as robust as you may have been led to believe
 
      // this is the hack
-     store['location'] = location.clone();  
+     if(location)
+       store['location'] = location.clone();  
 
      store['visibleTypes'] = this._store['visibleTypes'];  
 

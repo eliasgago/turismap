@@ -116,7 +116,7 @@ import { Subscription } from 'rxjs/Subscription';
          console.log(data['currentView']);
          this.currentView = data['currentView'];
          this._chgDetector.detectChanges();
-       break;
+         break;
      }
    }
 

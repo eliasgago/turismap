@@ -58,6 +58,8 @@ export class LeafletMap extends FluxComponent {
   protected _layerPoints: FeatureGroup;
   protected _markers: Array<any> = [];
 
+  protected currentLocation: Marker;
+
   // this variable is only for routing machine (error on TypeScript)
   private Leaflet: any = L;
   private _formatter: any;
@@ -176,21 +178,27 @@ export class LeafletMap extends FluxComponent {
           });
         }, 1000);
         break;
-      case BasicActions.CURRENT_LOCATION:
+      case BasicActions.SHOW_CURRENT_LOCATION:
         let location: MapLocation = <MapLocation> data['location'];
         console.log(location);
         
-        var marker: Marker = L.marker([location.latitude, location.longitude]).addTo(this._map);
-        this.bindCurrentLocationIcon(marker);
+        this.currentLocation = L.marker([location.latitude, location.longitude]).addTo(this._map);
+        this.bindCurrentLocationIcon(this.currentLocation);
 
-        this._map.panTo( 
+        this.showOnMap(location);
+
+        /*this._map.panTo( 
           [location.latitude, location.longitude],
           {
             animate: true,
             duration: 1,
             easeLinearity: 0.6
           }
-        );
+        );*/
+        break;
+
+      case BasicActions.HIDE_CURRENT_LOCATION:
+        this._map.removeLayer(this.currentLocation)
         break;
 
       case BasicActions.SHOW_ROUTE:
@@ -276,7 +284,7 @@ export class LeafletMap extends FluxComponent {
           }, this)
 
           L.DomEvent.on(locationADiv, 'click', () => {
-            this._d.dispatchAction(BasicActions.CURRENT_LOCATION, null);
+            this._d.dispatchAction(BasicActions.SHOW_CURRENT_LOCATION, null);
             //console.log(this);
           }, this)
 
@@ -423,7 +431,11 @@ export class LeafletMap extends FluxComponent {
     var targetPoint = this._map.project([selectedPoint.latitude, selectedPoint.longitude], this._map.getZoom()).subtract([0, -300 / 2]),
     targetLatLng = this._map.unproject(targetPoint, this._map.getZoom());
 
-    this._map.setView(targetLatLng, this._map.getZoom());
+    this._map.setView(targetLatLng, this._map.getZoom(), {
+      animate: true,
+      duration: 1,
+      easeLinearity: 0.6
+    });
   }
 
 

@@ -91,7 +91,7 @@ import { BasicActions } from '../shared/actions/basic-actions';
          this._clicked         = false;
        break;
 
-       case BasicActions.CURRENT_LOCATION:
+       case BasicActions.SHOW_CURRENT_LOCATION:
          this._locProgressText = "Map moved to current IP location";
          this._clicked         = false;
        break;
@@ -141,7 +141,7 @@ import { BasicActions } from '../shared/actions/basic-actions';
        this._showLocProgress = true;
        this._showNavProgress = false;
 
-       this._dispatcher.dispatchAction(BasicActions.CURRENT_LOCATION, null);
+       this._dispatcher.dispatchAction(BasicActions.SHOW_CURRENT_LOCATION, null);
      }
      else
        this._locProgressText = "Location fetch in progress, waiting for service return ...";

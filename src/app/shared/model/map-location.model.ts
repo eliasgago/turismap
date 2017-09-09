@@ -14,6 +14,7 @@ export class MapLocation
   protected _type: MapLocationType; 
   protected _name: string; 
   protected _description: string; 
+  protected _image: string; 
   protected _tips: Array<string>;
   
 
@@ -45,6 +46,11 @@ export class MapLocation
   public get description(): string
   {
     return this._description;
+  }
+
+  public get image(): string
+  {
+    return this._image;
   }
 
   public get tips(): Array<string>
@@ -79,6 +85,11 @@ export class MapLocation
     this._description = value;
   }
 
+  public set image(value: string)
+  {
+    this._image = value;
+  }
+
   public set tips(value: Array<string>)
   {
     this._tips = value;
@@ -95,6 +106,7 @@ export class MapLocation
     this._type = MapLocationType.NONE;
     this._name = "";
     this._description = "";
+    this._image = "";
     this._tips = [];
   }
 
@@ -111,6 +123,7 @@ export class MapLocation
     mapLocation.type   = this._type;
     mapLocation.name   = this._name;
     mapLocation.description   = this._description;
+    mapLocation.image   = this._image;
     mapLocation.tips   = this._tips;
 
     return mapLocation;

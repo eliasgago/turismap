@@ -18,7 +18,9 @@ export class HeaderComponent extends FluxComponent {
 
 	public searchClass: string;
 	public searchText: string;
+    public searching: boolean = false;
 	public foundElements: Array<MapLocation> = [];
+    public locationActive: boolean = false;
 
     constructor(private _d: FluxDispatcher, private _chgDetector: ChangeDetectorRef) {
     	super(_d);
@@ -27,16 +29,28 @@ export class HeaderComponent extends FluxComponent {
     public focusSearch(): void {
     	console.log('search');
     	this.searchClass = 'searching';
+        this._d.dispatchAction(BasicActions.SET_VIEW, 'searching');
     }
 
 
     public blurSearch(): void {
     	this.searchClass = '';
+        this.searching = false;
+        this._d.dispatchAction(BasicActions.SET_VIEW, 'summary');
     }
 
     public search(event: any) {
     	console.log(event.target.value);
+        this.searching = true;
         this._d.dispatchAction(BasicActions.SEARCH_POINT, this.searchText);
+    }
+
+    public activateLocation(){
+        this._d.dispatchAction(BasicActions.SHOW_CURRENT_LOCATION, null);
+    }
+
+    public deactivateLocation(){
+        this._d.dispatchAction(BasicActions.HIDE_CURRENT_LOCATION, null);
     }
 
     public showPoint(id: string) {
@@ -54,6 +68,12 @@ export class HeaderComponent extends FluxComponent {
 	        	console.log(this.foundElements);
 	   			this._chgDetector.detectChanges();
        			break;
+            case BasicActions.SHOW_CURRENT_LOCATION:
+                this.locationActive = true;
+                break;
+            case BasicActions.HIDE_CURRENT_LOCATION:
+                this.locationActive = false;
+                break;
      	}
    	}
 

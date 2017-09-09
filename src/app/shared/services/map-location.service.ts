@@ -291,12 +291,7 @@ export class MapLocationService
     var result: Array<MapLocation> = [];
 
     for (var i = this.points.length - 1; i >= 0; i--) {
-        var mapLocation: MapLocation = new MapLocation();
-        mapLocation.id = this.points[i].id;
-        mapLocation.type = this.points[i].type;
-        mapLocation.name = this.points[i].name;
-        mapLocation.latitude = this.points[i].lat;
-        mapLocation.longitude = this.points[i].lon;
+        var mapLocation: MapLocation = this.createMapLocation(this.points[i]);
 
         result.push(mapLocation);
     }    
@@ -349,12 +344,7 @@ export class MapLocationService
 
     for (var i = this.points.length - 1; i >= 0; i--) {
         if(this.points[i].name.toLowerCase().indexOf(searchText.toLowerCase()) != -1) {
-            var mapLocation: MapLocation = new MapLocation();
-            mapLocation.id = this.points[i].id;
-            mapLocation.type = this.points[i].type;
-            mapLocation.name = this.points[i].name;
-            mapLocation.latitude = this.points[i].lat;
-            mapLocation.longitude = this.points[i].lon;
+            var mapLocation: MapLocation = this.createMapLocation(this.points[i]);
 
             result.push(mapLocation);
         }
@@ -420,9 +410,23 @@ export class MapLocationService
       mapLocation.latitude = point.lat;
       mapLocation.longitude = point.lon;
       mapLocation.description = point.description;
+      mapLocation.image = 'assets/img/' + this.getFolderByType(point.type) + '/' + point.id + '.jpg';
       mapLocation.tips = point.tips;
 
       return mapLocation;
   }
+
+    private getFolderByType(type: MapLocationType) {
+        switch (type) {
+            case MapLocationType.VIEWPOINT:
+                return 'viewpoint';    
+            case MapLocationType.SITE:
+                return 'site';    
+            case MapLocationType.LODGING:
+                return 'lodging';    
+            case MapLocationType.WINERY:
+                return 'winery';
+        }
+    }
 
 }

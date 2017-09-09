@@ -15,8 +15,9 @@
   position: absolute;
   width: 100%;
   height: 300px;
-  bottom: 30px;
+  bottom: 0px;
   z-index: 1000;
+  transition: all 1s;
 }
 
 .actions-component {
@@ -62,6 +63,15 @@
 }
 .bottom-winery {
   border-bottom: 1px solid #75485E;
+}
+
+.flex-container.searching {
+  transition: all 1s;
+}
+
+.flex-container.searching .summary-component {
+  bottom: -300px;
+  transition: all 1s; 
 }
 
 .flex-container.map {

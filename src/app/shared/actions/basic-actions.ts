@@ -16,7 +16,8 @@
 
 export enum BasicActions
 {
-  CURRENT_LOCATION,     // request map location based on current ip address
+  SHOW_CURRENT_LOCATION,     // request map location based on current ip address
+  HIDE_CURRENT_LOCATION,
   ADDRESS,              // request map location based on physical address
   GET_MAP_PARAMS,       // request initial map parameters
   GET_MAP_POINTS,       // request points to view at map

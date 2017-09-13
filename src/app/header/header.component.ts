@@ -21,6 +21,7 @@ export class HeaderComponent extends FluxComponent {
     public searching: boolean = false;
 	public foundElements: Array<MapLocation> = [];
     public locationActive: boolean = false;
+    public currentView: string;
 
     constructor(private _d: FluxDispatcher, private _chgDetector: ChangeDetectorRef) {
     	super(_d);
@@ -73,6 +74,9 @@ export class HeaderComponent extends FluxComponent {
                 break;
             case BasicActions.HIDE_CURRENT_LOCATION:
                 this.locationActive = false;
+                break;
+            case BasicActions.SET_VIEW:
+                this.currentView = data['currentView'];
                 break;
      	}
    	}

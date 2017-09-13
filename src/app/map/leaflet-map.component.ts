@@ -170,13 +170,27 @@ export class LeafletMap extends FluxComponent {
         }
         break;
       case BasicActions.SET_VIEW:
-        setTimeout(() => { 
+        /*setTimeout(() => { 
           this._map.invalidateSize({
             animate: true,
             duration: 1,
             easeLinearity: 0.6
           });
-        }, 1000);
+        }, 1000);*/
+        var selectedPoint: MapLocation = <MapLocation> data['selectedPoint'];
+
+        this._map.invalidateSize();
+
+        var view = data['currentView'];
+        if(view == 'detail'){
+          this.showOnMap(selectedPoint, 500);
+        }else{
+          this.showOnMap(selectedPoint);
+          if(view == ''){
+            this._map.removeControl(this.route);   
+          }
+        }
+        
         break;
       case BasicActions.SHOW_CURRENT_LOCATION:
         let location: MapLocation = <MapLocation> data['location'];
@@ -427,8 +441,8 @@ export class LeafletMap extends FluxComponent {
     return routeInstructions;
   }
 
-  private showOnMap(selectedPoint: MapLocation){
-    var targetPoint = this._map.project([selectedPoint.latitude, selectedPoint.longitude], this._map.getZoom()).subtract([0, -300 / 2]),
+  private showOnMap(selectedPoint: MapLocation, offset: number = -300){
+    var targetPoint = this._map.project([selectedPoint.latitude, selectedPoint.longitude], this._map.getZoom()).subtract([0, offset / 2]),
     targetLatLng = this._map.unproject(targetPoint, this._map.getZoom());
 
     this._map.setView(targetLatLng, this._map.getZoom(), {

@@ -8,7 +8,15 @@
 	display:flex; 
 	align-items: center;
 	justify-content: center;
+  	transition: all 1s; 
 }
+
+.detail.header {
+  top: -40px;
+  transform: rotateX(-90deg);
+  transition: ease-out 1s; 
+}
+
 
 .header > div {
 	padding: 6px;

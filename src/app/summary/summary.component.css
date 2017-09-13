@@ -1,9 +1,15 @@
 
 .carousel_container {
   width: 210px;
-  height: 140px;
+  height: 100%;
   position: relative;
   margin: 0 auto 40px;
+  transition: all 1s;
+}
+
+.carousel_container.summary, .carousel_container.detail {
+  width: 100%;
+  transition: ease-in 1s;
 }
 
 #carousel {
@@ -37,8 +43,34 @@
      -moz-backface-visibility: hidden;
        -o-backface-visibility: hidden;
           backface-visibility: hidden;
+	transition: all 1s;
 }
 
+.carousel_container.detail #carousel figure.selected {
+	width: 100%;
+	height: 80vh;
+	transition: ease-in 1s;
+	top: 0px;
+	left: 0px;
+	border: 0px;
+	border-radius: 0px;
+	overflow: scroll;
+}
+
+.carousel_container.summary #carousel figure.selected {
+	width: 100%;
+	height: 100%;
+	border-radius: 0px;
+	top: 0px;
+	left: 0px;
+	border: 0px;
+	transition: all 1s;
+}
+
+#carousel figure.notSelected {
+	top: 1300px;
+	transition: all 2s;
+}
 
 .image {
 	background-repeat: no-repeat;
@@ -46,17 +78,83 @@
 	background-size: cover;
 	width: 100%;
 	height: 200px;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
+	border-radius: 15px;
+	transition: ease-in 1s;
+}
+
+#carousel figure.selected .image {
+	border-radius: 0px;
+	transition: ease-in 1s;
+}
+
+.carousel_container.detail #carousel figure.selected .image {
+	height: 230px;
 }
 
 .name {
-	padding: 10px;
-	text-align: center;
+	position: absolute;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+    padding: 5px 0px;
+	margin-top: -65px;
+    height: 40px;
 }
 
 .name h1 {
-	font-size: 12pt;
-	color: black;
+	font-size: 14pt;
 	margin: 0;
+	transition: ease-in 1s;
+}
+
+#carousel figure.selected .name h1 {
+	font-size: 18pt;
+	transition: ease-in 1s;
+}
+
+
+
+.data {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: black;
+  font-size: 14pt;
+  padding: 10px;
+}
+
+.data .distance {
+	text-align: left;
+}
+
+.data .route {
+	background-color: #4285f4;
+	border: 0px;
+	padding: 10px;
+	color: white;
+	font-size: 12pt;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 4px;
+}
+
+.data .route img {
+	margin-right: 10px;
+}
+
+.description {
+	color: black;
+	text-align: left;
+	padding: 5px;
+	margin: 5px;
+}
+
+.close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }

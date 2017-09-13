@@ -1,16 +1,32 @@
 
-<section class="carousel_container">
+<section class="carousel_container" [ngClass]="currentView">
   <div id="carousel" [style.transform]="transformProperty" (swipeleft)="__onNextCard($event)" (swiperight)="__onPreviousCard($event)" *ngIf="_loading">
 
-    <figure *ngFor="let element of elements; let i = index" [style.transform]="getTransformation(i)">
+    <figure *ngFor="let element of elements; let i = index" [style.transform]="getTransformation(i)" [class.selected]="i == selectedIndex && (showSummary || showDetail)" [class.notSelected]="i != selectedIndex && (showSummary || showDetail)">
+      <a href="#" class="close" (click)="__onClickCloseDetail()" *ngIf="showSummary || showDetail"><img src="assets/img/close.png" width="20"></a>
       <div class="image" [ngStyle]="{ 'background-image': 'url(\'' + element.image + '\')'}"></div>
-      <div class="name">
+      <div class="name" (click)="__onShowSummary()">
           <h1 >{{element.name}}</h1>
           <!--h1 (click)="__onClickShowDetail()">{{element.name}}</h1-->
       </div>
-      <div class="actions">
-          <!--a href="#" class="info" (click)="__onClickShowDetail()" *ngIf="!_showDetail">i</a-->
-          <!--a href="#" class="close" (click)="__onClickCloseDetail()" *ngIf="_showDetail"><img src="assets/img/close.png" width="20"></a-->
+      <div class="data" *ngIf="showSummary || showDetail">
+        <div class="distance">
+          <div class="km">14km</div>
+          <div class="min">23 min.</div>
+        </div>
+        <button class="route" (click)="__onShowRoute()"><img src="assets/img/route.png">CÓMO LLEGAR</button>
+        <a class="info" (click)="__onShowDetail()">+ INFO</a>
+      </div>
+      <div class="description" *ngIf="showDetail">
+
+        <p>{{element.description}}</p>
+
+        <div class="tips" *ngIf="element.tips">
+            <h4>Tips:</h4>
+            <ul>
+                <li *ngFor="let tip of element.tips">{{tip}}</li>
+            </ul>
+        </div>
       </div>
     </figure>
 

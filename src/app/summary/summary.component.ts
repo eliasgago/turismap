@@ -34,7 +34,9 @@ export class SummaryComponent extends FluxComponent {
 
   transformProperty: any = '';
 
-  showDetail = false;
+  currentView: string;
+  showSummary: boolean = false;
+  showDetail: boolean = false;
 
 	_loading = false;
     
@@ -46,14 +48,13 @@ export class SummaryComponent extends FluxComponent {
    	protected __onModelUpdate(data: Object): void {
      	switch (data['action'])
      	{
-       		/*case BasicActions.GET_RANDOM_POINT:
-       		case BasicActions.SHOW_POINT:
-	        	this.selectedPoint = <MapLocation> data['selectedPoint'];
-	        	this.selectedPointBackgroundImage = 'assets/img/' + this.getFolderByType(this.selectedPoint.type) + '/' + this.selectedPoint.id + '.jpg';
-	        	this.selectedPointClass = this.getFolderByType(this.selectedPoint.type);
-	         	this._loading = true;
+       		case BasicActions.SET_VIEW:
+            this.currentView = data['currentView'];
+            this.showSummary = this.currentView == 'summary';
+	        	this.showDetail = this.currentView == 'detail';
+            console.log(this.showDetail);
 	   			  this._chgDetector.detectChanges();
-       			break;*/
+       			break;
 
           case BasicActions.GET_MAP_POINTS:
             //this.elements = data['mapElements'].slice(0, 9); 
@@ -65,9 +66,47 @@ export class SummaryComponent extends FluxComponent {
             console.log('totalElements: ' + this.totalElements);
             console.log('carouselRotation: ' + this.carouselRotation);
             console.log('carouselTranslation: ' + this.carouselTranslation);
+            setTimeout(() => {
+                  this._d.dispatchAction(BasicActions.SHOW_POINT, { id: this.elements[0].id });
+              }, 1000
+            );
             this._loading = true;
             this._chgDetector.detectChanges();
             break;
+
+          case BasicActions.GET_RANDOM_POINT:
+          case BasicActions.SHOW_POINT:
+            var selectedPoint: MapLocation = <MapLocation> data['selectedPoint'];
+            console.log(selectedPoint);
+            for (var i = this.elements.length - 1; i >= 0; i--) {
+              let marker = this.elements[i];
+              if(this.elements[i].id == selectedPoint.id ){
+                console.log('selectedIndex: ' + this.selectedIndex);
+                console.log('index: ' + i);
+                var selectedOnCarousel: boolean = false;
+                if(Math.abs(this.selectedIndex - i) == 1 || ((this.selectedIndex + i) == this.totalElements -1) ){
+                  console.log('estamos pasando con el dedo');
+                  selectedOnCarousel = true;
+                }
+                if(selectedOnCarousel){
+                  var onForwardDirection = this.isNext(this.selectedIndex, i);
+                  if(onForwardDirection){
+                    console.log('hacia adelante');
+                    this.carouselAngle += this.carouselRotation * -1;
+                  }else{
+                    console.log('hacia atrás');
+                    this.carouselAngle += this.carouselRotation;
+                  }
+                }else{
+                  this.carouselAngle = - (this.carouselRotation * i);
+                }
+
+                this.selectedIndex = i;
+
+                console.log('carouselAngle: ' + this.carouselAngle);
+                this.transformProperty = this._sanitizer.bypassSecurityTrustStyle('translateZ( -' + this.carouselTranslation + 'px ) rotateY(' + this.carouselAngle + 'deg )');
+              }
+            }
      	}
    	}
 
@@ -80,8 +119,21 @@ export class SummaryComponent extends FluxComponent {
         this._dispatcher.dispatchAction(BasicActions.SET_VIEW, 'map');
     }
 
+    protected __onShowSummary(): void {
+        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, 'summary');
+    }
+
     protected __onShowDetail(): void {
         this._dispatcher.dispatchAction(BasicActions.SET_VIEW, 'detail');
+    }
+
+    protected __onShowRoute(): void {
+      this._d.dispatchAction(BasicActions.SET_VIEW, 'route');
+      this._d.dispatchAction(BasicActions.SHOW_ROUTE, null);
+    }
+
+    protected __onClickCloseDetail(): void {
+        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, '');
     }
 
     private getFolderByType(type: MapLocationType) {
@@ -102,19 +154,35 @@ export class SummaryComponent extends FluxComponent {
     }
 
     protected __onNextCard(event: any): void {
-      this.selectedIndex = (this.selectedIndex + 1) % this.totalElements;
-      console.log(this.selectedIndex);
+      var newSelectedIndex = (this.selectedIndex + 1) % this.totalElements;
+      console.log('newSelectedIndex: ' + newSelectedIndex);
+      /*console.log(this.selectedIndex);
       this.carouselAngle += this.carouselRotation * -1;
-      this.transformProperty = this._sanitizer.bypassSecurityTrustStyle('translateZ( -' + this.carouselTranslation + 'px ) rotateY(' + this.carouselAngle + 'deg )');
-      this._d.dispatchAction(BasicActions.SHOW_POINT, { id: this.elements[this.selectedIndex].id });
+      console.log('carouselAngle: ' + this.carouselAngle);
+      this.transformProperty = this._sanitizer.bypassSecurityTrustStyle('translateZ( -' + this.carouselTranslation + 'px ) rotateY(' + this.carouselAngle + 'deg )');*/
+      this._d.dispatchAction(BasicActions.SHOW_POINT, { id: this.elements[newSelectedIndex].id });
     }
 
     protected __onPreviousCard(event: any): void {
-      this.selectedIndex = ((this.selectedIndex - 1) + this.totalElements) % this.totalElements;
-      console.log(this.selectedIndex);
-      this.carouselAngle += this.carouselRotation;
-      this.transformProperty = this._sanitizer.bypassSecurityTrustStyle('translateZ( -' + this.carouselTranslation + 'px ) rotateY(' + this.carouselAngle + 'deg )');
-      this._d.dispatchAction(BasicActions.SHOW_POINT, { id: this.elements[this.selectedIndex].id });
+      var newSelectedIndex = ((this.selectedIndex - 1) + this.totalElements) % this.totalElements;
+      console.log('newSelectedIndex: ' + newSelectedIndex);
+      /*this.carouselAngle += this.carouselRotation;
+      console.log('carouselAngle: ' + this.carouselAngle);
+      this.transformProperty = this._sanitizer.bypassSecurityTrustStyle('translateZ( -' + this.carouselTranslation + 'px ) rotateY(' + this.carouselAngle + 'deg )');*/
+      this._d.dispatchAction(BasicActions.SHOW_POINT, { id: this.elements[newSelectedIndex].id });
+    }
+
+    private isNext(index: number, indexToCheck: number): boolean {
+      if(indexToCheck == 0){
+        return index == (this.totalElements - 1);
+      }
+      if(indexToCheck == (this.totalElements - 1)){
+        return index != 0;
+      }
+      if(indexToCheck > index) {
+        return true;
+      }
+      return false;
     }
 
 }

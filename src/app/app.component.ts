@@ -104,7 +104,7 @@ import { Subscription } from 'rxjs/Subscription';
    public ngAfterViewInit()
    {
       this._d.dispatchAction(BasicActions.GET_MAP_PARAMS, null);
-      this._d.dispatchAction(BasicActions.GET_RANDOM_POINT, null);
+//      this._d.dispatchAction(BasicActions.GET_RANDOM_POINT, null);
    }
 
    // update the component based on a new state of the global store

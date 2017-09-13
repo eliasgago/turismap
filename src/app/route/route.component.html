@@ -3,13 +3,14 @@
 
         <div class="leaflet-routing-alt">
             <div class="header">
+                <div class="image">
+                    <img [src]="selectedPointImage" />
+                </div>
                 <div class="data">
                     <h2>{{route.arrive}}</h2>
                     <h3>{{route.totalDistance}}, {{route.totalTime}}</h3>
                 </div>
-                <div class="image">
-                    <img [src]="selectedPointImage" />
-                </div>
+                <a href="#" class="close" (click)="__onClickCloseRoute()"><img src="assets/img/close_dark.png" width="20"></a>
             </div>
             <table class="">
                 <colgroup class="">

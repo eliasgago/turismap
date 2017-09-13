@@ -32,7 +32,7 @@ export class RouteComponent extends FluxComponent {
        		case BasicActions.SET_ROUTE:
 	        	this.route = <Route> data['route'];
                 var selectedPoint = <MapLocation> data['selectedPoint'];
-                this.selectedPointImage = 'assets/img/' + this.getFolderByType(selectedPoint.type) + '/' + selectedPoint.id + '.jpg';
+                this.selectedPointImage = selectedPoint.image;
                 console.log(this.route);
 	   			this._loading = true;
 	   			this._chgDetector.detectChanges();
@@ -40,17 +40,8 @@ export class RouteComponent extends FluxComponent {
      	}
    	}
 
-    private getFolderByType(type: MapLocationType) {
-        switch (type) {
-            case MapLocationType.VIEWPOINT:
-                return 'viewpoint';    
-            case MapLocationType.SITE:
-                return 'site';    
-            case MapLocationType.LODGING:
-                return 'lodging';    
-            case MapLocationType.WINERY:
-                return 'winery';
-        }
+    protected __onClickCloseRoute(): void {
+        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, '');
     }
 
 }

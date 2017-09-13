@@ -280,7 +280,13 @@ export class MapLocationService
         "type": MapLocationType.LODGING,
         "name" : "Casa Solveira",
         "lat": 42.417710436936574,
-        "lon": -7.600843906402588
+        "lon": -7.600843906402588,
+        "description": "En la parroquia de Santiorxo se encuentra el mirador que lleva su mismo nombre. Rodeado por un pinar nos deja entrever uno de los infinitos meandros que el Sil realiza hasta juntarse con el Miño. Acondicionado con un pequeño paseo de madera que nos lleva hasta él, durante ese trayecto tenemos varios bancos desde donde podemos comtemplar el río y los cañones que en este punto miden hasta 500m.",
+        "tips": [
+            "Es el mirador desde el cual podemos ver más longitud del río.",
+            "El coche nos lleva hasta un pundo desde donde ya contemplamos los cañones.",
+            "Merendar en uno de esos bancos es uno de los placeres de la Ribeira Sacra."
+        ]
     }
   ];
 

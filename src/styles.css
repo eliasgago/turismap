@@ -570,35 +570,6 @@ p.padded
 
 
 
-.data {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  color: grey;
-}
-
-.data .map-button {
-  background-color: rgba(33,33,33,0.8);
-  border: 1px solid rgba(33,33,33,0.3);
-  box-shadow: 2px 2px 4px rgba(33, 33, 33, 0.2);
-  border-radius: 6px;
-  padding: 12px;
-  margin: 6px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 10pt;
-  color: white;
-}
-
-.data .map-button.reverse {
-  background-color: rgba(255,255,255,0.1);
-  border: 1px solid rgba(33,33,33,0.1);
-}
-
-
-
 /* Input Search */
 
 .icon svg {

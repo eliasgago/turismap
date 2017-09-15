@@ -186,7 +186,7 @@ export class LeafletMap extends FluxComponent {
           this.showOnMap(selectedPoint, 500);
         }else{
           this.showOnMap(selectedPoint);
-          if(view == ''){
+          if(view == '' && this.route){
             this._map.removeControl(this.route);   
           }
         }

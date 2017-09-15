@@ -35,18 +35,12 @@ import { HttpModule    } from '@angular/http';
 // main application component and supporting components
 import { AppComponent     } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { ActionsComponent } from './actions/actions.component';
-import { WelcomeComponent } from './welcome/welcome.component';
 import { SummaryComponent } from './summary/summary.component';
-import { DetailComponent } from './detail/detail.component';
 import { RouteComponent } from './route/route.component';
 import { LeafletMap       } from './map/leaflet-map.component';
 import { LoadingComponent } from './loading/loading.component';
 // old import { MapNavComponent  } from './navigator/navigator.component';
 // old import { InfoComponent  } from './info/info.component';
-
-import { IconSearch , IconMenu, IconMap } from 'angular-feather';
 
 // the shared model and dispatcher modules
 import { SharedModelModule      } from './sharedModel.module';
@@ -54,7 +48,7 @@ import { SharedDispatcherModule } from './sharedDispatcher.module';
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, WelcomeComponent, SummaryComponent, DetailComponent, RouteComponent, LeafletMap, ActionsComponent, FooterComponent, LoadingComponent
+    AppComponent, HeaderComponent, SummaryComponent, RouteComponent, LeafletMap, LoadingComponent
   ],
 
   imports: [
@@ -63,10 +57,7 @@ import { SharedDispatcherModule } from './sharedDispatcher.module';
     HttpModule,
     FormsModule,
     SharedModelModule.forRoot(),
-    SharedDispatcherModule.forRoot(),
-      IconSearch,
-      IconMenu,
-      IconMap
+    SharedDispatcherModule.forRoot()
   ],
 
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-.header {
+.search {
 	position: absolute;
 	width: 100%;
 	top: 40px;
@@ -11,27 +11,10 @@
   	transition: all 1s; 
 }
 
-.detail.header {
-  top: -40px;
-  transform: rotateX(-90deg);
-  transition: ease-out 1s; 
-}
-
-
-.header > div {
-	padding: 6px;
-}
-
-.logo {
-}
-
-.title {
-	font-size: 12pt;
-}
-
-.search {
-	position: relative;
-
+.search.detail {
+  	top: -40px;
+  	transform: rotateX(-90deg);
+  	transition: ease-out 1s; 
 }
 
 input[type=search] {
@@ -55,25 +38,27 @@ input[type=search]::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: #ddd;
     font-family: 'Dosis';
 }
-input[type=search]:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:    #909;
-   opacity:  1;
+input[type=search]:-moz-placeholder { /* Mozilla Firefox 4 to 18 *//
+    color: #ddd;
+    font-family: 'Dosis';
+   	opacity:  1;
 }
-input[type=search]::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:    #909;
-   opacity:  1;
+input[type=search]::-moz-placeholder { /* Mozilla Firefox 19+ *//
+    color: #ddd;
+    font-family: 'Dosis';
+   	opacity:  1;
 }
-input[type=search]:-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    #909;
+input[type=search]:-ms-input-placeholder { /* Internet Explorer 10-11 *//
+    color: #ddd;
+    font-family: 'Dosis';
 }
-input[type=search]::-ms-input-placeholder { /* Microsoft Edge */
-   color:    #909;
+input[type=search]::-ms-input-placeholder { /* Microsoft Edge *//
+    color: #ddd;
+    font-family: 'Dosis';
 }
 
 .location {
-	position: absolute;
-	right: 8px;
-	margin-top: -35px;
+	margin-left: -35px;
 }
 
 .results {

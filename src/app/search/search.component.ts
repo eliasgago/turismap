@@ -8,13 +8,13 @@ import { BasicActions } from '../shared/actions/basic-actions';
 import { MapLocation } from '../shared/model/map-location.model';
 
 @Component({
-    selector: 'header-component',
-    templateUrl: 'header.component.html',
-    styleUrls: ['header.component.css']
+    selector: 'search-component',
+    templateUrl: 'search.component.html',
+    styleUrls: ['search.component.css']
 })
 
 
-export class HeaderComponent extends FluxComponent {
+export class SearchComponent extends FluxComponent {
 
 	public searchClass: string;
 	public searchText: string;

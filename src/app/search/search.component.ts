@@ -16,47 +16,63 @@ import { MapLocation } from '../shared/model/map-location.model';
 
 export class SearchComponent extends FluxComponent {
 
-	public searchClass: string;
-	public searchText: string;
-    public searching: boolean = false;
+	public searchText: string = '';
+    public isSearching: boolean = false;
 	public foundElements: Array<MapLocation> = [];
-    public locationActive: boolean = false;
+
+    public currentLocationChecked: boolean = false;
+
+    public previousView: string;
     public currentView: string;
 
     constructor(private _d: FluxDispatcher, private _chgDetector: ChangeDetectorRef) {
     	super(_d);
     }
 
-    public focusSearch(): void {
-    	console.log('search');
-    	this.searchClass = 'searching';
+    public onSearchInputFocus(){
+        this.isSearching = true;
+        this.previousView = this.currentView;
         this._d.dispatchAction(BasicActions.SET_VIEW, 'searching');
     }
 
+    public onSearchInputClose(){
+        this.isSearching = false;
+        this._d.dispatchAction(BasicActions.SET_VIEW, this.previousView);
+        this.foundElements = [];
+        this.searchText = "";
+    }
 
-    public blurSearch(): void {
-    	this.searchClass = '';
-        this.searching = false;
+    public onSearch(event: any) {
+        if(event.srcElement.value == '') {
+            this.closeSearch();
+        }
+    }
+
+    public onKeyUpSearch(event: any) {
+        if(this.searchText != ''){
+            this._d.dispatchAction(BasicActions.SEARCH_POINT, this.searchText);
+        }
+    }
+
+    public onClickElement(id: string) {
         this._d.dispatchAction(BasicActions.SET_VIEW, 'summary');
+        this._d.dispatchAction(BasicActions.SHOW_POINT, { id: id });
+        this.foundElements = [];
+        this.isSearching = false;
+        this.searchText = "";
     }
 
-    public search(event: any) {
-    	console.log(event.target.value);
-        this.searching = true;
-        this._d.dispatchAction(BasicActions.SEARCH_POINT, this.searchText);
-    }
-
-    public activateLocation(){
+    public onCheckCurrentLocation(){
         this._d.dispatchAction(BasicActions.SHOW_CURRENT_LOCATION, null);
     }
 
-    public deactivateLocation(){
+    public onUncheckCurrentLocation(){
         this._d.dispatchAction(BasicActions.HIDE_CURRENT_LOCATION, null);
     }
 
-    public showPoint(id: string) {
-    	console.log(id);
-        this._d.dispatchAction(BasicActions.SHOW_POINT, { id: id });
+    private closeSearch(){
+        console.log('close');
+        this.isSearching = false;
         this.foundElements = [];
         this.searchText = "";
     }
@@ -66,14 +82,13 @@ export class SearchComponent extends FluxComponent {
      	{
        		case BasicActions.SEARCH_POINT:
 	        	this.foundElements = <Array<MapLocation>> data['foundElements'];
-	        	console.log(this.foundElements);
 	   			this._chgDetector.detectChanges();
        			break;
             case BasicActions.SHOW_CURRENT_LOCATION:
-                this.locationActive = true;
+                this.currentLocationChecked = true;
                 break;
             case BasicActions.HIDE_CURRENT_LOCATION:
-                this.locationActive = false;
+                this.currentLocationChecked = false;
                 break;
             case BasicActions.SET_VIEW:
                 this.currentView = data['currentView'];

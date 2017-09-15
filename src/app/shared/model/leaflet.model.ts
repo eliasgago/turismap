@@ -37,8 +37,6 @@
 
  // services - adding an actual service layer to the application is left as an exercise
  import { MapLocationService } from '../services/map-location.service';
- import { LocationService } from '../services/location.service';
- import { Geocode         } from '../services/geocode.service';
 
  // typescript math toolkit
  import { TSMT$Location } from './location.model';
@@ -72,14 +70,8 @@
    // subscribers to model updates
    private _subscribers:Array<Subject<any>>;
 
-  /**
-   * Construct a new Leaflet model
-   *
-   * @param geocoder: Geocode Injected geocoding service (convert string address to TSMT$Location)
-   *
-   * @param locationService: LocationServide Injected location service (get current location based on IP address)
-   */
-   constructor(private _geocoder: Geocode, private _locationService: LocationService, private _mapLocationService: MapLocationService) 
+
+   constructor(private _mapLocationService: MapLocationService) 
    {
      if (LeafletModel._instance instanceof LeafletModel) 
        return LeafletModel._instance;
@@ -322,20 +314,6 @@
             }
          );
          validAction = false; 
-       break;
-
-       
-       
-       case BasicActions.ADDRESS:
-         if (payload.hasOwnProperty('address'))
-         {
-           this._geocoder.toLocation(payload['address'])
-                         .subscribe( data  => this.__onCurrentLocation(data),    // same method does double-duty
-                                     error => this.__onAddressError() );
-
-           this._store['action'] = this._action;
-           validAction           = false;    // wait until service data is completely processed before responding
-         }
        break;
 
        case BasicActions.ALL:

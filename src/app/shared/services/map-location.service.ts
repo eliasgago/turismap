@@ -359,7 +359,7 @@ export class MapLocationService
     return Rx.Observable.from(result);
   }
 
-  public searchOtherLocation(searchText: string): Observable<MapLocation> {
+  /*public searchOtherLocation(searchText: string): Observable<MapLocation> {
     let location: MapLocation = new MapLocation();
 
     return this._http
@@ -381,19 +381,11 @@ export class MapLocationService
                 location.latitude           = result.results[0].geometry.location.lat;
                 location.longitude          = result.results[0].geometry.location.lng;
 
-                /*let viewPort: any   = result.results[0].geometry.viewport;
-                let bounds: Object  = L.latLngBounds(
-                  { lat: viewPort.southwest.lat, lng: viewPort.southwest.lng},
-                  { lat: viewPort.northeast.lat, lng: viewPort.northeast.lng}
-                );
-
-                location.setData('viewBounds', bounds);*/
-
                 return location;
             }
         }
     );
-  }
+  }*/
 
 
   public getCurrentLocation(): Observable<MapLocation> {

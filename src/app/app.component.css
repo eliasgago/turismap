@@ -73,7 +73,8 @@
 }
 
 .flex-container.searching .summary-component {
-  bottom: -300px;
+  bottom: 0px;
+  height: 0px;
   transition: all 1s; 
 }
 

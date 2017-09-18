@@ -6,7 +6,7 @@
     <div class="location" (click)="onUncheckCurrentLocation()" *ngIf="currentLocationChecked && !searching"><img src="assets/img/location_active.png"></div>
   </form>
   <ul class="results">
-    <li *ngFor="let element of foundElements" (click)="onClickElement(element.id)">
+    <li *ngFor="let element of foundElements" (click)="onClickElement(element.id)" [ngClass]="getFolderByType(element.type)">
       <img [src]="element.image"><div>{{element.name}}</div>
     </li>
   </ul>

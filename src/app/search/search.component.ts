@@ -6,6 +6,7 @@ import { FluxDispatcher } from '../shared/flux/flux.dispatcher';
 import { BasicActions } from '../shared/actions/basic-actions';
 
 import { MapLocation } from '../shared/model/map-location.model';
+import { MapLocationType } from '../shared/model/map-location-type.model';
 
 @Component({
     selector: 'search-component',
@@ -95,5 +96,19 @@ export class SearchComponent extends FluxComponent {
                 break;
      	}
    	}
+
+
+    private getFolderByType(type: MapLocationType) {
+        switch (type) {
+            case MapLocationType.VIEWPOINT:
+                return 'viewpoint';    
+            case MapLocationType.SITE:
+                return 'site';    
+            case MapLocationType.LODGING:
+                return 'lodging';    
+            case MapLocationType.WINERY:
+                return 'winery';
+        }
+    }
 
 }

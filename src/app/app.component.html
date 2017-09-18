@@ -1,20 +1,11 @@
 <div style="height: 100vh;">
-    <!--div class="welcome-component">
-        <welcome-component></welcome-component>
-    </div-->
     <div class="flex-container" [ngClass]="currentView">
         <div class="search-component">
             <search-component></search-component>
         </div>
-        <div class="summary-component">
-            <summary-component></summary-component>
+        <div class="points-component">
+            <points-component></points-component>
         </div>
-        <!--div class="actions-component">
-            <actions-component></actions-component>
-        </div>
-        <div class="detail-component">
-            <detail-component></detail-component>
-        </div-->
         <div class="map-component">
             <div *ngIf="_loading">
               <loading loadingText="Loading Leaflet Map"></loading>
@@ -25,7 +16,4 @@
             <route-component></route-component>
         </div>
     </div>
-    <!--div class="footer-component">
-        <footer-component></footer-component>
-    </div-->
 </div>

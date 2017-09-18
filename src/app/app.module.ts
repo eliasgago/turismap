@@ -35,7 +35,7 @@ import { HttpModule    } from '@angular/http';
 // main application component and supporting components
 import { AppComponent     } from './app.component';
 import { SearchComponent } from './search/search.component';
-import { SummaryComponent } from './summary/summary.component';
+import { PointsComponent } from './points/points.component';
 import { RouteComponent } from './route/route.component';
 import { LeafletMap       } from './map/leaflet-map.component';
 import { LoadingComponent } from './loading/loading.component';
@@ -48,7 +48,7 @@ import { SharedDispatcherModule } from './sharedDispatcher.module';
 
 @NgModule({
   declarations: [
-    AppComponent, SearchComponent, SummaryComponent, RouteComponent, LeafletMap, LoadingComponent
+    AppComponent, SearchComponent, PointsComponent, RouteComponent, LeafletMap, LoadingComponent
   ],
 
   imports: [

@@ -12,17 +12,15 @@ import 'hammerjs';
 
 
 @Component({
-    selector: 'summary-component',
-    templateUrl: 'summary.component.html',
-    styleUrls: ['summary.component.css']
+    selector: 'points-component',
+    templateUrl: 'points.component.html',
+    styleUrls: ['points.component.css']
 })
 
 
-export class SummaryComponent extends FluxComponent {
+export class PointsComponent extends FluxComponent {
 
 	selectedPoint: MapLocation = null;
-	selectedPointBackgroundImage = null;
-	selectedPointClass = null;
 
   elements: Array<MapLocation> = null;
   selectedIndex: number = 0;
@@ -44,17 +42,50 @@ export class SummaryComponent extends FluxComponent {
     	super(_d);
    	}
 
+    protected onNextCard(event: any): void {
+      var newSelectedIndex = (this.selectedIndex + 1) % this.totalElements;
+      console.log('newSelectedIndex: ' + newSelectedIndex);
+      this._d.dispatchAction(BasicActions.SHOW_POINT, { id: this.elements[newSelectedIndex].id });
+    }
+
+    protected onPreviousCard(event: any): void {
+      var newSelectedIndex = ((this.selectedIndex - 1) + this.totalElements) % this.totalElements;
+      console.log('newSelectedIndex: ' + newSelectedIndex);
+      this._d.dispatchAction(BasicActions.SHOW_POINT, { id: this.elements[newSelectedIndex].id });
+    }
+
+    protected onShowSummary(): void {
+        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, 'summary');
+    }
+
+    protected onShowDetail(): void {
+        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, 'detail');
+    }
+
+    protected onShowRoute(): void {
+      this._d.dispatchAction(BasicActions.SET_VIEW, 'route');
+      this._d.dispatchAction(BasicActions.SHOW_ROUTE, null);
+    }
+
+    protected onClickClose(): void {
+        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, '');
+    }
+
+    protected getTransformation(index){
+      return this._sanitizer.bypassSecurityTrustStyle('rotateY( ' + (index * this.carouselRotation) + 'deg ) translateZ( ' + this.carouselTranslation + 'px )');
+    }
+
     // update the component based on a new state of the global store
-   	protected __onModelUpdate(data: Object): void {
-     	switch (data['action'])
-     	{
-       		case BasicActions.SET_VIEW:
+     protected __onModelUpdate(data: Object): void {
+       switch (data['action'])
+       {
+           case BasicActions.SET_VIEW:
             this.currentView = data['currentView'];
             this.showSummary = this.currentView == 'summary';
-	        	this.showDetail = this.currentView == 'detail';
+            this.showDetail = this.currentView == 'detail';
             console.log(this.showDetail);
-	   			  this._chgDetector.detectChanges();
-       			break;
+             this._chgDetector.detectChanges();
+             break;
 
           case BasicActions.GET_MAP_POINTS:
             //this.elements = data['mapElements'].slice(0, 9); 
@@ -76,11 +107,11 @@ export class SummaryComponent extends FluxComponent {
 
           case BasicActions.GET_RANDOM_POINT:
           case BasicActions.SHOW_POINT:
-            var selectedPoint: MapLocation = <MapLocation> data['selectedPoint'];
-            console.log(selectedPoint);
+            this.selectedPoint = <MapLocation> data['selectedPoint'];
+            console.log(this.selectedPoint);
             for (var i = this.elements.length - 1; i >= 0; i--) {
               let marker = this.elements[i];
-              if(this.elements[i].id == selectedPoint.id ){
+              if(this.elements[i].id == this.selectedPoint.id ){
                 console.log('selectedIndex: ' + this.selectedIndex);
                 console.log('index: ' + i);
                 var selectedOnCarousel: boolean = false;
@@ -107,70 +138,8 @@ export class SummaryComponent extends FluxComponent {
                 this.transformProperty = this._sanitizer.bypassSecurityTrustStyle('translateZ( -' + this.carouselTranslation + 'px ) rotateY(' + this.carouselAngle + 'deg )');
               }
             }
-     	}
-   	}
-
-
-   	protected __onNextPoint(): void {
-        this._dispatcher.dispatchAction(BasicActions.GET_RANDOM_POINT, null);
-    }
-
-    protected __onShowMap(): void {
-        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, 'map');
-    }
-
-    protected __onShowSummary(): void {
-        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, 'summary');
-    }
-
-    protected __onShowDetail(): void {
-        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, 'detail');
-    }
-
-    protected __onShowRoute(): void {
-      this._d.dispatchAction(BasicActions.SET_VIEW, 'route');
-      this._d.dispatchAction(BasicActions.SHOW_ROUTE, null);
-    }
-
-    protected __onClickCloseDetail(): void {
-        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, '');
-    }
-
-    private getFolderByType(type: MapLocationType) {
-    	switch (type) {
-    		case MapLocationType.VIEWPOINT:
-    			return 'viewpoint';    
-    		case MapLocationType.SITE:
-    			return 'site';    
-    		case MapLocationType.LODGING:
-    			return 'lodging';    
-    		case MapLocationType.WINERY:
-    			return 'winery';
-    	}
-    }
-
-    protected getTransformation(index){
-      return this._sanitizer.bypassSecurityTrustStyle('rotateY( ' + (index * this.carouselRotation) + 'deg ) translateZ( ' + this.carouselTranslation + 'px )');
-    }
-
-    protected __onNextCard(event: any): void {
-      var newSelectedIndex = (this.selectedIndex + 1) % this.totalElements;
-      console.log('newSelectedIndex: ' + newSelectedIndex);
-      /*console.log(this.selectedIndex);
-      this.carouselAngle += this.carouselRotation * -1;
-      console.log('carouselAngle: ' + this.carouselAngle);
-      this.transformProperty = this._sanitizer.bypassSecurityTrustStyle('translateZ( -' + this.carouselTranslation + 'px ) rotateY(' + this.carouselAngle + 'deg )');*/
-      this._d.dispatchAction(BasicActions.SHOW_POINT, { id: this.elements[newSelectedIndex].id });
-    }
-
-    protected __onPreviousCard(event: any): void {
-      var newSelectedIndex = ((this.selectedIndex - 1) + this.totalElements) % this.totalElements;
-      console.log('newSelectedIndex: ' + newSelectedIndex);
-      /*this.carouselAngle += this.carouselRotation;
-      console.log('carouselAngle: ' + this.carouselAngle);
-      this.transformProperty = this._sanitizer.bypassSecurityTrustStyle('translateZ( -' + this.carouselTranslation + 'px ) rotateY(' + this.carouselAngle + 'deg )');*/
-      this._d.dispatchAction(BasicActions.SHOW_POINT, { id: this.elements[newSelectedIndex].id });
-    }
+       }
+     }
 
     private isNext(index: number, indexToCheck: number): boolean {
       if(indexToCheck == 0){

@@ -4,12 +4,12 @@
   <section class="carousel_container">
     <div id="carousel" [style.transform]="transformProperty" (swipeleft)="onNextCard($event)" (swiperight)="onPreviousCard($event)" *ngIf="_loading">
 
-      <figure *ngFor="let element of elements; let i = index;" [style.transform]="getTransformation(i)" [class.selected]="i == selectedIndex && (showSummary || showDetail)" [class.notSelected]="i != selectedIndex && (showSummary || showDetail)">
+      <figure *ngFor="let point of points; let i = index;" [style.transform]="getTransformation(i)" [class.selected]="i == selectedIndex && (showSummary || showDetail)" [class.notSelected]="i != selectedIndex && (showSummary || showDetail)">
         <a href="#" class="close" (click)="onClickClose()" *ngIf="showSummary || showDetail"><img src="assets/img/close.png" width="20"></a>
-        <div class="image" [ngStyle]="{ 'background-image': 'url(\'' + element.image + '\')'}"></div>
+        <div class="image" [ngStyle]="{ 'background-image': 'url(\'' + point.image + '\')'}"></div>
         <div class="name" (click)="onShowSummary()">
-            <h1 >{{element.name}}</h1>
-            <!--h1 (click)="__onClickShowDetail()">{{element.name}}</h1-->
+            <h1 >{{point.name}}</h1>
+            <!--h1 (click)="__onClickShowDetail()">{{point.name}}</h1-->
         </div>
       </figure>
 

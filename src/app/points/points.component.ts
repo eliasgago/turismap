@@ -35,6 +35,7 @@ export class PointsComponent extends FluxComponent {
   currentView: string;
   showSummary: boolean = false;
   showDetail: boolean = false;
+  showRoute: boolean = false;
 
 	_loading = false;
     
@@ -61,8 +62,8 @@ export class PointsComponent extends FluxComponent {
     }
 
     protected onShowRoute(): void {
-      this._d.dispatchAction(BasicActions.SET_VIEW, 'route');
-      this._d.dispatchAction(BasicActions.SHOW_ROUTE, null);
+        this._d.dispatchAction(BasicActions.SET_VIEW, 'route');
+        this._d.dispatchAction(BasicActions.SHOW_ROUTE, null);
     }
 
     protected onClickClose(): void {
@@ -81,6 +82,7 @@ export class PointsComponent extends FluxComponent {
             this.currentView = data['currentView'];
             this.showSummary = this.currentView == 'summary';
             this.showDetail = this.currentView == 'detail';
+            this.showRoute = this.currentView == 'route';
             this._chgDetector.detectChanges();
             break;
 

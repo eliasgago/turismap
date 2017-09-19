@@ -4,7 +4,7 @@
   <section class="carousel_container">
     <div id="carousel" [style.transform]="transformProperty" (swipeleft)="onNextCard($event)" (swiperight)="onPreviousCard($event)" *ngIf="_loading">
 
-      <figure *ngFor="let point of points; let i = index;" [style.transform]="getTransformation(i)" [class.selected]="i == selectedIndex && (showSummary || showDetail)" [class.notSelected]="i != selectedIndex && (showSummary || showDetail)">
+      <figure *ngFor="let point of points; let i = index;" [style.transform]="getTransformation(i)" [class.selected]="i == selectedIndex && (showSummary || showDetail || showRoute)" [class.notSelected]="i != selectedIndex && (showSummary || showDetail || showRoute)">
         <a href="#" class="close" (click)="onClickClose()" *ngIf="showSummary || showDetail"><img src="assets/img/close.png" width="20"></a>
         <div class="image" [ngStyle]="{ 'background-image': 'url(\'' + point.image + '\')'}"></div>
         <div class="name" (click)="onShowSummary()">
@@ -25,7 +25,7 @@
     <a class="info" (click)="onShowDetail()">+ INFO</a>
   </div>
 
-  <div class="description" *ngIf="selectedPoint">
+  <div class="description" *ngIf="selectedPoint && showDetail">
 
     <p>{{selectedPoint.description}}</p>
 

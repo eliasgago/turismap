@@ -19,15 +19,14 @@
   position: absolute;
   bottom: 0px;
   width: 100%; 
-  height: 0px;
-  overflow: scroll;
+  height: 280px;
   transition: all 1s; 
   z-index: 1000;
 }
 
 .map-component {
   flex: 1 1 100%;
-  height: 100%;
+  height: 100vh;
   width: 100%; 
   transition: all 1s; 
 }
@@ -47,12 +46,39 @@
   transition: all 1s; 
 }
 
-.flex-container.route .points-component {
-  height: 0%;
-  transition: all 1s; 
+
+/* Flip Effect Summary -> Route */
+
+.container { 
+  width: 100%;
+  height: 280px;
+  position: absolute;
+  bottom: 0px;
+  z-index: 1000;
 }
 
-.flex-container.route .route-component {
-  height: 300px;
-  transition: all 1s; 
+.card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
 }
+
+.card div {
+  margin: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.card .back {
+  transform: rotateY( 180deg );
+}
+
+.card.flipped {
+  transform: rotateY( 180deg );
+}
+
+/* End Flip Effect Summary -> Route */

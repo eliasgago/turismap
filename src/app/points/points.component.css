@@ -7,7 +7,7 @@
   transition: all 1s;
 }
 
-main.summary .carousel_container, main.detail .carousel_container {
+main.summary .carousel_container, main.detail .carousel_container, main.route .carousel_container {
   width: 100%;
   transition: ease-in 1s;
 }
@@ -55,7 +55,7 @@ main.detail #carousel figure.selected {
 	border-radius: 0px;
 }
 
-main.summary #carousel figure.selected {
+main.summary #carousel figure.selected, main.route #carousel figure.selected {
 	width: 100%;
 	height: 100%;
 	border-radius: 0px;
@@ -125,7 +125,7 @@ main.summary #carousel figure.selected {
   transition: all 1s;
 }
 
-main.summary .data, main.detail .data {
+main.summary .data, main.detail .data, main.route .data {
   margin-top: 0px;
   opacity: 1;
   font-size: 14pt;

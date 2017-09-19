@@ -41,7 +41,7 @@ export class RouteComponent extends FluxComponent {
    	}
 
     protected __onClickCloseRoute(): void {
-        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, '');
+        this._dispatcher.dispatchAction(BasicActions.SET_VIEW, 'summary');
     }
 
 }

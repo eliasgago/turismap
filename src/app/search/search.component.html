@@ -2,8 +2,8 @@
   <form>
     <input type="text" value="" name="search" id="search" placeholder="Hola! ¿Qué deseas visitar en Sober?" [(ngModel)]="searchText" (keyup)="onKeyUpSearch($event)" (search)="onSearch($event)" [ngClass]="{'searching': isSearching}" (focus)="onSearchInputFocus()">
     <div class="close" *ngIf="isSearching" (click)="onSearchInputClose()"><img src="assets/img/close_search.png"></div>
-    <div class="location" (click)="onCheckCurrentLocation()" *ngIf="!currentLocationChecked && !searching"><img src="assets/img/location.png"></div>
-    <div class="location" (click)="onUncheckCurrentLocation()" *ngIf="currentLocationChecked && !searching"><img src="assets/img/location_active.png"></div>
+    <div class="location" (click)="onCheckCurrentLocation()" *ngIf="!currentLocationChecked && !isSearching"><img src="assets/img/location.png"></div>
+    <div class="location" (click)="onUncheckCurrentLocation()" *ngIf="currentLocationChecked && !isSearching"><img src="assets/img/location_active.png"></div>
   </form>
   <ul class="results">
     <li *ngFor="let element of foundElements" (click)="onClickElement(element.id)" [ngClass]="getFolderByType(element.type)">

@@ -62,12 +62,12 @@ import { Subscription } from 'rxjs/Subscription';
  */
  export class AppComponent extends FluxComponent implements OnInit, AfterViewInit
  {
-   protected _loading: boolean = true;    // true if content is being loaded
+   public _loading: boolean = true;    // true if content is being loaded
 
    protected selectedPoint: MapLocation = null;
    protected selectedPointClass: string = null;
 
-   protected currentView: string = 'summary';
+   public currentView: string = 'summary';
 
    // access the leaflet map
    @ViewChild(LeafletMap) _leafletMap: LeafletMap;
@@ -108,7 +108,7 @@ import { Subscription } from 'rxjs/Subscription';
    }
 
    // update the component based on a new state of the global store
-   protected __onModelUpdate(data: Object): void
+   public __onModelUpdate(data: Object): void
    {
      switch (data['action'])
      {
@@ -120,7 +120,7 @@ import { Subscription } from 'rxjs/Subscription';
      }
    }
 
-   protected __onLayerAdded(payload: any): void
+   public __onLayerAdded(payload: any): void
    {
      // if layer was added while loading in progress, this is an indication of the initial (application) load
      if (this._loading)
